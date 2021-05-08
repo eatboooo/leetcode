@@ -6,6 +6,10 @@
  */
 package cn.etaboooo.leetcode.demo;
 
+import java.util.ArrayList;
+
+import cn.etaboooo.bean.ListNode;
+
 /**
  * Demo01
  * @description
@@ -14,7 +18,18 @@ package cn.etaboooo.leetcode.demo;
  * @version 1.0
  */
 public class Demo01 {
-    public static String abc() {
-        return "abc";
+    /**
+     *
+     * Demo01
+     * https://leetcode-cn.com/problems/delete-node-in-a-linked-list/
+     * @description 237. 删除链表中的节点
+     * @return java.lang.String
+     * @date 2021/5/8 17:10
+     * @author weiZhiLin
+     * @version 1.0
+     */
+    public static  void deleteNode(ListNode node) {
+        node.val = node.next.val;
+        node.next = node.next.next;
     }
 }
