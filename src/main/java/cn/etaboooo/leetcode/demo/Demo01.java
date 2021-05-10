@@ -73,6 +73,7 @@ public class Demo01 {
         if (l > r) {
             return null;
         }
+        // 使用 (l+r)>>1 两个接近 int 最大值相加就会会报错
         int mind = l + ((r - l) >> 1);
         TreeNode treeNode = new TreeNode(arr[mind]);
         treeNode.left = helpSortedArrayToBST(arr, l, mind - 1);
