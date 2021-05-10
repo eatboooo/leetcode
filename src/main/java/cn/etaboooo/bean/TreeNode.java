@@ -8,8 +8,8 @@ package cn.etaboooo.bean;
 public class TreeNode {
 
     Integer val;
-    TreeNode left;
-    TreeNode right;
+    public TreeNode left;
+    public TreeNode right;
 
     TreeNode() {
     }
@@ -32,15 +32,17 @@ public class TreeNode {
 
     private static void arrAsTree(Integer[] arr, TreeNode treeNode, int index) {
         if (arr.length <= index) return;
-
-        treeNode.val = arr[index];
-        if (arr.length > index + 1) {
-            treeNode.left = new TreeNode();
-            arrAsTree(arr, treeNode.left, index*2 + 1);
+        if (null == arr[index]) {
+            return;
         }
-        if (arr.length > index + 2) {
+        treeNode.val = arr[index];
+        if (arr.length > index * 2  + 1) {
+            treeNode.left = new TreeNode();
+            arrAsTree(arr, treeNode.left, index * 2 + 1);
+        }
+        if (arr.length > index * 2 + 2) {
             treeNode.right = new TreeNode();
-            arrAsTree(arr, treeNode.right, index*2 + 2);
+            arrAsTree(arr, treeNode.right, index * 2 + 2);
         }
     }
 }

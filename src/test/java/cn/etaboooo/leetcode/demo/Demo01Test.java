@@ -23,6 +23,6 @@ class Demo01Test {
     @Test
     void maxDepth() {
         TreeNode treeNode = TreeNode.arrAsTree(new Integer[]{3,9,20,null,null,15,7});
-        System.out.println(treeNode);
+        System.out.println(Demo01.maxDepth(treeNode));
     }
 }

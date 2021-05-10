@@ -43,7 +43,13 @@ public class Demo01 {
      * @author weiZhiLin
      * @version 1.0
      */
-    public int maxDepth(TreeNode root) {
-        return 1;
+    public static int maxDepth(TreeNode root) {
+        if (root == null) {
+            return 0;
+        } else {
+            int leftHeight = maxDepth(root.left);
+            int rightHeight = maxDepth(root.right);
+            return Math.max(leftHeight, rightHeight) + 1;
+        }
     }
 }
