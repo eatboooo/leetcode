@@ -15,7 +15,7 @@ import cn.etaboooo.bean.TreeNode;
     本题中，一个高度平衡二叉树是指一个二叉树每个节点 的左右两个子树的高度差的绝对值不超过 1。
      */
 public class Demo01 {
-    public TreeNode sortedListToBST(ListNode head) {
+    /*public TreeNode sortedListToBST(ListNode head) {
         if (head == null) return null;
         if (head.next == null) return new TreeNode(head.val);
         ListNode p = head.next, q = head.next.next, pre = head;
@@ -38,6 +38,6 @@ public class Demo01 {
         root.right = sortedListToBST(p.next);
 
         return root;
-    }
+    }*/
 
 }

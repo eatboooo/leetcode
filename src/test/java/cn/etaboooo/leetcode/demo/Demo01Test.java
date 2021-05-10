@@ -3,6 +3,7 @@ package cn.etaboooo.leetcode.demo;
 import org.junit.jupiter.api.Test;
 
 import cn.etaboooo.bean.ListNode;
+import cn.etaboooo.bean.TreeNode;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -17,5 +18,11 @@ class Demo01Test {
         ListNode listNode = ListNode.asList(new int[]{1, 2, 3, 4});
         Demo01.deleteNode(listNode.next.next);
         System.out.println(listNode);
+    }
+
+    @Test
+    void maxDepth() {
+        TreeNode treeNode = TreeNode.arrAsTree(new Integer[]{3,9,20,null,null,15,7});
+        System.out.println(treeNode);
     }
 }

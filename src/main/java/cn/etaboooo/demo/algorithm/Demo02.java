@@ -28,7 +28,7 @@ public class Demo02 {
     int[] preorder;
     int[] inorder;
 
-    private TreeNode TreeHelper(int l, int r) {
+  /*  private TreeNode TreeHelper(int l, int r) {
         if (l == r) {
             return null;
         }
@@ -49,7 +49,7 @@ public class Demo02 {
         }
         return TreeHelper(0, preorder.length);
     }
-
+*/
     /*public static void main(String[] args) {
         int[] a = {3, 9, 20, 15, 7};
         int[] b = {9, 3, 15, 20, 7};

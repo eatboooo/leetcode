@@ -6,13 +6,13 @@
  */
 package cn.etaboooo.leetcode.demo;
 
-import java.util.ArrayList;
 
 import cn.etaboooo.bean.ListNode;
+import cn.etaboooo.bean.TreeNode;
 
 /**
  * Demo01
- * @description
+ * @description  LeetCode 精选 TOP 面试题
  * @author weiZhiLin
  * @date 2021/5/8 16:47
  * @version 1.0
@@ -31,5 +31,19 @@ public class Demo01 {
     public static  void deleteNode(ListNode node) {
         node.val = node.next.val;
         node.next = node.next.next;
+    }
+    /**
+     *
+     * Demo01
+     * https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/
+     * @description 104. 二叉树的最大深度
+     * @param root
+     * @return int
+     * @date 2021/5/10 12:32
+     * @author weiZhiLin
+     * @version 1.0
+     */
+    public int maxDepth(TreeNode root) {
+        return 1;
     }
 }
