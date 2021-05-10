@@ -7,14 +7,14 @@ package cn.etaboooo.bean;
  */
 public class TreeNode {
 
-    Integer val;
+    public Integer val;
     public TreeNode left;
     public TreeNode right;
 
     TreeNode() {
     }
 
-    TreeNode(int val) {
+    public TreeNode(int val) {
         this.val = val;
     }
 
