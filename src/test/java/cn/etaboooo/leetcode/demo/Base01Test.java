@@ -14,4 +14,11 @@ class Base01Test {
         Base01.print32(~-1+1);
         Base01.print32(Integer.MIN_VALUE);
     }
+
+    @Test
+    void selectSort() {
+        int[] arr = {3, 5, 12, 4, 3, 5};
+        Base01.selectSort(arr);
+        Base01.printArr(arr);
+    }
 }
