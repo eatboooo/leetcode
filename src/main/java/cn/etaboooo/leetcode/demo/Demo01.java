@@ -7,6 +7,9 @@
 package cn.etaboooo.leetcode.demo;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import cn.etaboooo.bean.ListNode;
 import cn.etaboooo.bean.TreeNode;
 
@@ -81,4 +84,30 @@ public class Demo01 {
         return treeNode;
     }
 
+
+    /**
+     *
+     * Demo01
+     * https://leetcode-cn.com/problems/binary-tree-inorder-traversal/
+     * @description 94. 二叉树的中序遍历
+     * @param root
+     * @return java.util.List<java.lang.Integer>
+     * @date 2021/5/21 14:21
+     * @author weiZhiLin
+     * @version 1.0
+     */
+    public static List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> arrayList = new ArrayList();
+        helpInorderTraversal(root,arrayList);
+        return arrayList;
+    }
+
+    private static void helpInorderTraversal(TreeNode root, List<Integer> arrayList) {
+        if (null == root) {
+            return;
+        }
+        helpInorderTraversal(root.left,arrayList);
+        arrayList.add(root.val);
+        helpInorderTraversal(root.right,arrayList);
+    }
 }

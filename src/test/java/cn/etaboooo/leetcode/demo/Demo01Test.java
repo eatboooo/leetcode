@@ -1,5 +1,7 @@
 package cn.etaboooo.leetcode.demo;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import cn.etaboooo.bean.ListNode;
@@ -28,5 +30,14 @@ class Demo01Test {
     void sortedArrayToBST() {
         TreeNode x = Demo01.sortedArrayToBST(new int[]{1,2,3,4,5});
         System.out.println(x);
+    }
+
+    @Test
+    void inorderTraversal() {
+        TreeNode treeNode = TreeNode.arrAsTree(new Integer[]{3, 9, 20, null, null, 15, 7});
+        List<Integer> integers = Demo01.inorderTraversal(treeNode);
+        for (Integer integer : integers) {
+            System.out.println(integer);
+        }
     }
 }
