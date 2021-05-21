@@ -98,7 +98,7 @@ public class Demo01 {
      */
     public static List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> arrayList = new ArrayList();
-        helpInorderTraversal(root,arrayList);
+        helpInorderTraversal(root, arrayList);
         return arrayList;
     }
 
@@ -106,33 +106,33 @@ public class Demo01 {
         if (null == root) {
             return;
         }
-        helpInorderTraversal(root.left,arrayList);
+        helpInorderTraversal(root.left, arrayList);
         arrayList.add(root.val);
-        helpInorderTraversal(root.right,arrayList);
+        helpInorderTraversal(root.right, arrayList);
     }
 
     /**
      *
      * Demo01
      * https://leetcode-cn.com/problems/reverse-string/
-     * @description 翻转字符串
+     * @description 344. 翻转字符串
      * @param s
      * @date 2021/5/21 15:09
      * @author weiZhiLin
      * @version 1.0
      */
     public void reverseString(char[] s) {
-        helpReverseString(s, 0,s.length-1);
+        helpReverseString(s, 0, s.length - 1);
     }
 
-    private void helpReverseString(char[] s, int l , int r) {
+    private void helpReverseString(char[] s, int l, int r) {
         if (l >= r) {
             return;
         }
         char temp = s[l];
         s[l] = s[r];
         s[r] = temp;
-        helpReverseString(s,l+1,r-1);
+        helpReverseString(s, l + 1, r - 1);
     }
 
     /**
@@ -149,7 +149,7 @@ public class Demo01 {
     public int hammingWeight(int n) {
         int sum = 0;
         for (int i = 31; i >= 0; i--) {
-            sum +=( (n >> i) & 1);
+            sum += ((n >> i) & 1);
         }
         return sum;
     }
@@ -167,11 +167,45 @@ public class Demo01 {
      */
     public ListNode reverseList(ListNode head) {
         if (null == head || null == head.next) {
-            return  head;
+            return head;
         }
         ListNode listNode = reverseList(head.next);
         head.next.next = head;
         head.next = null;
         return listNode;
+    }
+
+    /**
+     * https://leetcode-cn.com/problems/single-number/
+     * Demo01
+     *
+     * @description 136. 只出现一次的数字
+     * @param nums
+     * @return int
+     * @date 2021/5/21 16:30
+     * @author weiZhiLin
+     * @version 1.0
+     */
+    public int singleNumber(int[] nums) {
+        for (int i = 0; i < nums.length; i++) {
+            int num = nums[i];
+            if (i == nums.length - 1) {
+                return nums[i];
+            }
+            for (int j = 0; j < nums.length; j++) {
+                if (i == j) {
+                    continue;
+                }
+                if (nums[i] == nums[j]) {
+                    num = nums[i];
+                    break;
+                }
+                num = nums[j];
+            }
+            if (num != nums[i]) {
+                return nums[i];
+            }
+        }
+        return -1;
     }
 }
