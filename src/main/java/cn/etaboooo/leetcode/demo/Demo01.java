@@ -110,4 +110,29 @@ public class Demo01 {
         arrayList.add(root.val);
         helpInorderTraversal(root.right,arrayList);
     }
+
+    /**
+     *
+     * Demo01
+     * https://leetcode-cn.com/problems/reverse-string/
+     * @description 翻转字符串
+     * @param s
+     * @date 2021/5/21 15:09
+     * @author weiZhiLin
+     * @version 1.0
+     */
+    public void reverseString(char[] s) {
+        helpReverseString(s, 0,s.length-1);
+    }
+
+    private void helpReverseString(char[] s, int l , int r) {
+        if (l >= r) {
+            return;
+        }
+        char temp = s[l];
+        s[l] = s[r];
+        s[r] = temp;
+        helpReverseString(s,l+1,r-1);
+    }
+
 }
