@@ -208,4 +208,15 @@ public class Demo01 {
         }
         return -1;
     }
+    // 用 异或 解决
+    // 其余每个元素均出现两次。 两个相同的数异或为0,0和任何数异或都为任何数
+    public int singleNumber2(int [] nums) {
+        int ans = nums[0];
+        if (nums.length > 1) {
+            for (int i = 1; i < nums.length; i++) {
+                ans = ans ^ nums[i];
+            }
+        }
+        return ans;
+    }
 }
