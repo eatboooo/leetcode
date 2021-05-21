@@ -10,10 +10,10 @@ public class ListNode {
     public ListNode next;
     public Integer val;
 
-    ListNode() {
+    public ListNode() {
     }
 
-    ListNode(int x) {
+    public ListNode(int x) {
         val = x;
     }
 

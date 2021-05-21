@@ -153,4 +153,25 @@ public class Demo01 {
         }
         return sum;
     }
+
+    /**
+     *
+     * Demo01
+     * https://leetcode-cn.com/problems/reverse-linked-list/
+     * @description 206. 反转链表
+     * @param head
+     * @return cn.etaboooo.bean.ListNode
+     * @date 2021/5/21 16:00
+     * @author weiZhiLin
+     * @version 1.0
+     */
+    public ListNode reverseList(ListNode head) {
+        if (null == head || null == head.next) {
+            return  head;
+        }
+        ListNode listNode = reverseList(head.next);
+        head.next.next = head;
+        head.next = null;
+        return listNode;
+    }
 }
