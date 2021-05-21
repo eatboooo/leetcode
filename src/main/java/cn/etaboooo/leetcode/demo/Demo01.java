@@ -135,4 +135,22 @@ public class Demo01 {
         helpReverseString(s,l+1,r-1);
     }
 
+    /**
+     *
+     * Demo01
+     * https://leetcode-cn.com/problems/number-of-1-bits/
+     * @description 191. 位1的个数
+     * @param n
+     * @return int
+     * @date 2021/5/21 15:48
+     * @author weiZhiLin
+     * @version 1.0
+     */
+    public int hammingWeight(int n) {
+        int sum = 0;
+        for (int i = 31; i >= 0; i--) {
+            sum +=( (n >> i) & 1);
+        }
+        return sum;
+    }
 }
