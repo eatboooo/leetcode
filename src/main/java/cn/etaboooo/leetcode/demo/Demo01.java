@@ -208,9 +208,10 @@ public class Demo01 {
         }
         return -1;
     }
+
     // 用 异或 解决
     // 其余每个元素均出现两次。 两个相同的数异或为0,0和任何数异或都为任何数
-    public int singleNumber2(int [] nums) {
+    public int singleNumber2(int[] nums) {
         int ans = nums[0];
         if (nums.length > 1) {
             for (int i = 1; i < nums.length; i++) {
@@ -218,5 +219,32 @@ public class Demo01 {
             }
         }
         return ans;
+    }
+
+    /**
+     *
+     * Demo01
+     * https://leetcode-cn.com/problems/pascals-triangle/
+     * @description 118. 杨辉三角
+     * @param numRows
+     * @return java.util.List<java.util.List < java.lang.Integer>>
+     * @date 2021/5/21 17:34
+     * @author weiZhiLin
+     * @version 1.0
+     */
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> list = new ArrayList<>();
+        for (int i = 0; i < numRows; i++) {
+            List<Integer> row = new ArrayList<>();
+            for (int k = 0; k <= i; k++) {
+                if (k == 0 || i == k) {
+                    row.add(1);
+                }else{
+                    row.add(list.get(i - 1).get(k - 1) + list.get(i - 1).get(k));
+                }
+                list.add(row);
+            }
+        }
+        return list;
     }
 }
