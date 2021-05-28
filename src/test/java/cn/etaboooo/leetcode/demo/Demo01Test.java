@@ -40,4 +40,11 @@ class Demo01Test {
             System.out.println(integer);
         }
     }
+    @Test
+    void forTest(){
+        int i = 0;
+        for (int k = 0; k <= i; ++k) {
+            System.out.println(i);
+        }
+    }
 }
