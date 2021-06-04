@@ -7,26 +7,27 @@
 package cn.etaboooo.leetcode.demo;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
 import cn.etaboooo.bean.ListNode;
 import cn.etaboooo.bean.TreeNode;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Demo01
- * @description LeetCode 精选 TOP 面试题
+ *
  * @author weiZhiLin
- * @date 2021/5/8 16:47
  * @version 1.0
+ * @description LeetCode 精选 TOP 面试题
+ * @date 2021/5/8 16:47
  */
 public class Demo01 {
     /**
-     *
      * Demo01
      * https://leetcode-cn.com/problems/delete-node-in-a-linked-list/
-     * @description 237. 删除链表中的节点
+     *
      * @return java.lang.String
+     * @description 237. 删除链表中的节点
      * @date 2021/5/8 17:10
      * @author weiZhiLin
      * @version 1.0
@@ -37,12 +38,12 @@ public class Demo01 {
     }
 
     /**
-     *
      * Demo01
      * https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/
-     * @description 104. 二叉树的最大深度
+     *
      * @param root
      * @return int
+     * @description 104. 二叉树的最大深度
      * @date 2021/5/10 12:32
      * @author weiZhiLin
      * @version 1.0
@@ -58,12 +59,12 @@ public class Demo01 {
     }
 
     /**
-     *
      * Demo01
      * https://leetcode-cn.com/problems/convert-sorted-array-to-binary-search-tree/
-     * @description 108. 将有序数组转换为二叉搜索树
+     *
      * @param arr
      * @return cn.etaboooo.bean.TreeNode
+     * @description 108. 将有序数组转换为二叉搜索树
      * @date 2021/5/10 16:38
      * @author weiZhiLin
      * @version 1.0
@@ -86,12 +87,12 @@ public class Demo01 {
 
 
     /**
-     *
      * Demo01
      * https://leetcode-cn.com/problems/binary-tree-inorder-traversal/
-     * @description 94. 二叉树的中序遍历
+     *
      * @param root
      * @return java.util.List<java.lang.Integer>
+     * @description 94. 二叉树的中序遍历
      * @date 2021/5/21 14:21
      * @author weiZhiLin
      * @version 1.0
@@ -112,11 +113,11 @@ public class Demo01 {
     }
 
     /**
-     *
      * Demo01
      * https://leetcode-cn.com/problems/reverse-string/
-     * @description 344. 翻转字符串
+     *
      * @param s
+     * @description 344. 翻转字符串
      * @date 2021/5/21 15:09
      * @author weiZhiLin
      * @version 1.0
@@ -136,12 +137,12 @@ public class Demo01 {
     }
 
     /**
-     *
      * Demo01
      * https://leetcode-cn.com/problems/number-of-1-bits/
-     * @description 191. 位1的个数
+     *
      * @param n
      * @return int
+     * @description 191. 位1的个数
      * @date 2021/5/21 15:48
      * @author weiZhiLin
      * @version 1.0
@@ -155,12 +156,12 @@ public class Demo01 {
     }
 
     /**
-     *
      * Demo01
      * https://leetcode-cn.com/problems/reverse-linked-list/
-     * @description 206. 反转链表
+     *
      * @param head
      * @return cn.etaboooo.bean.ListNode
+     * @description 206. 反转链表
      * @date 2021/5/21 16:00
      * @author weiZhiLin
      * @version 1.0
@@ -179,9 +180,9 @@ public class Demo01 {
      * https://leetcode-cn.com/problems/single-number/
      * Demo01
      *
-     * @description 136. 只出现一次的数字
      * @param nums
      * @return int
+     * @description 136. 只出现一次的数字
      * @date 2021/5/21 16:30
      * @author weiZhiLin
      * @version 1.0
@@ -222,12 +223,12 @@ public class Demo01 {
     }
 
     /**
-     *
      * Demo01
      * https://leetcode-cn.com/problems/pascals-triangle/
-     * @description 118. 杨辉三角
+     *
      * @param numRows
      * @return java.util.List<java.util.List < java.lang.Integer>>
+     * @description 118. 杨辉三角
      * @date 2021/5/21 17:34
      * @author weiZhiLin
      * @version 1.0
@@ -239,12 +240,35 @@ public class Demo01 {
             for (int k = 0; k <= i; k++) {
                 if (k == 0 || i == k) {
                     row.add(1);
-                }else{
+                } else {
                     row.add(list.get(i - 1).get(k - 1) + list.get(i - 1).get(k));
                 }
                 list.add(row);
             }
         }
         return list;
+    }
+
+
+    /**
+     * https://leetcode-cn.com/problems/excel-sheet-column-number/
+     *  相当于 26 进制转 10 进制
+     * @Description: 171. Excel表列序号
+     * @Param: [columnTitle]
+     * @return: int
+     * @Author: weiZhiLin
+     * @Date: 2021/6/4 18:44
+     */
+    public static int titleToNumber(String columnTitle) {
+        int index = 0;
+        char[] chars = columnTitle.toCharArray();
+        int temp = 0;
+        for (int i = chars.length-1; i >= 0; i--) {
+            char aChar = chars[i];
+            int num = Integer.valueOf(aChar) - 64;
+            int pow = (int) Math.pow(26, temp++);
+            index += pow * num;
+        }
+        return index;
     }
 }

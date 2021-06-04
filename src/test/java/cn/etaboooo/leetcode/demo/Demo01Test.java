@@ -47,4 +47,10 @@ class Demo01Test {
             System.out.println(i);
         }
     }
+
+    @Test
+    void titleToNumber() {
+        int ab = Demo01.titleToNumber("ZY");
+        System.out.println(Integer.valueOf(ab));
+    }
 }
