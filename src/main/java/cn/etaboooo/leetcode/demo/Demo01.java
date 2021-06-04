@@ -252,7 +252,8 @@ public class Demo01 {
 
     /**
      * https://leetcode-cn.com/problems/excel-sheet-column-number/
-     *  相当于 26 进制转 10 进制
+     * 相当于 26 进制转 10 进制
+     *
      * @Description: 171. Excel表列序号
      * @Param: [columnTitle]
      * @return: int
@@ -263,12 +264,29 @@ public class Demo01 {
         int index = 0;
         char[] chars = columnTitle.toCharArray();
         int temp = 0;
-        for (int i = chars.length-1; i >= 0; i--) {
+        for (int i = chars.length - 1; i >= 0; i--) {
             char aChar = chars[i];
             int num = Integer.valueOf(aChar) - 64;
             int pow = (int) Math.pow(26, temp++);
             index += pow * num;
         }
         return index;
+    }
+
+    /**
+     * https://leetcode-cn.com/problems/reverse-bits/
+     *
+     * @Description: 190. 颠倒二进制位
+     * @Param: [n]
+     * @return: int
+     * @Author: weiZhiLin
+     * @Date: 2021/6/4 22:04
+     */
+    public static int reverseBits(int n) {
+        int s = 0;
+        for (int i = 0; i <= 31; i++) {
+            s += ((n >> i) & 1) << (31 - i);
+        }
+        return s;
     }
 }

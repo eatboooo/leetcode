@@ -53,4 +53,10 @@ class Demo01Test {
         int ab = Demo01.titleToNumber("ZY");
         System.out.println(Integer.valueOf(ab));
     }
+
+    @Test
+    void reverseBits() {
+        int i = Demo01.reverseBits(-3);
+        System.out.println(i);
+    }
 }
