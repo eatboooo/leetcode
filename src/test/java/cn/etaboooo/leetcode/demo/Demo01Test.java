@@ -59,4 +59,21 @@ class Demo01Test {
         int i = Demo01.reverseBits(-3);
         System.out.println(i);
     }
+
+    @Test
+    // 位运算 - 次方 , temp 的 n 次方 ，wx 收藏
+    void pow() {
+        int sum = 1;
+        int tmp = 2;
+        int n = 6;// 110
+        while(n != 0){
+            if((n & 1) == 1){
+                sum *= tmp;
+            }
+            tmp *= tmp;
+            n = n >> 1;
+        }
+
+        System.out.println(sum);
+    }
 }
