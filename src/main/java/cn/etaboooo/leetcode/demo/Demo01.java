@@ -289,4 +289,25 @@ public class Demo01 {
         }
         return s;
     }
+
+    /**
+     * https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/
+     *
+     * @Description: 122. 买卖股票的最佳时机 II
+     * @Param: [prices]
+     * @return: int
+     * @Author: weiZhiLin
+     * @Date: 2021/6/9 11:52
+     */
+    public static int maxProfit(int[] prices) {
+        int sum = 0;
+        for (int i = 0; i < prices.length - 1; i++) {
+            int now = prices[i];
+            int feature = prices[i + 1];
+            if (now < feature) {
+                sum += feature - now;
+            }
+        }
+        return sum;
+    }
 }
