@@ -310,4 +310,31 @@ public class Demo01 {
         }
         return sum;
     }
+
+    /**
+     * https://leetcode-cn.com/problems/fizz-buzz/
+     *
+     * @Description: 412. Fizz Buzz
+     * @Param: [n]
+     * @return: java.util.List<java.lang.String>
+     * @Author: weiZhiLin
+     * @Date: 2021/6/9 12:10
+     */
+    public List<String> fizzBuzz(int n) {
+        List<String> list = new ArrayList<>();
+        for (int i = 1; i <= n; i++) {
+            StringBuffer sb = new StringBuffer("");
+            if (i % 3 == 0) {
+                sb.append("Fizz");
+            }
+            if (i % 5 == 0) {
+                sb.append("Buzz");
+            }
+            if ("".contentEquals(sb)) {
+                sb.append(i);
+            }
+            list.add(sb.toString());
+        }
+        return list;
+    }
 }
