@@ -341,6 +341,11 @@ public class Demo01 {
     /**
      * https://leetcode-cn.com/problems/majority-element/
      *
+     * 害有一种排序思路
+     *      public int majorityElement(int[] nums) {
+     *         Arrays.sort(nums);
+     *         return nums[nums.length >> 1];
+     *      }
      * @Description: 169. 多数元素
      * @Param: [nums]
      * @return: int
