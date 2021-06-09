@@ -346,6 +346,7 @@ public class Demo01 {
      *         Arrays.sort(nums);
      *         return nums[nums.length >> 1];
      *      }
+     * 还有摩尔投票法，参考官网
      * @Description: 169. 多数元素
      * @Param: [nums]
      * @return: int
