@@ -337,4 +337,30 @@ public class Demo01 {
         }
         return list;
     }
+
+    /**
+     * https://leetcode-cn.com/problems/majority-element/
+     *
+     * @Description: 169. 多数元素
+     * @Param: [nums]
+     * @return: int
+     * @Author: weiZhiLin
+     * @Date: 2021/6/9 17:12
+     */
+    public int majorityElement(int[] nums) {
+        int count = 1;
+        for (int i = 0; i < nums.length; i++) {
+            int num = nums[i];
+            count = 1;
+            for (int j = i+1; j < nums.length; j++) {
+                if (nums[i] == nums[j]) {
+                    count++;
+                }
+            }
+            if (count > nums.length / 2) {
+                return nums[i];
+            }
+        }
+        return nums[0];
+    }
 }
