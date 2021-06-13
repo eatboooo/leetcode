@@ -405,4 +405,33 @@ public class Demo01 {
 
         return head;
     }
+
+    /**
+     * https://leetcode-cn.com/problems/valid-anagram/
+     *
+     * @Description: 242. 有效的字母异位词
+     * @Param: [s, t]
+     * @return: boolean
+     * @Author: weiZhiLin
+     * @Date: 2021/6/13 23:54
+     */
+    public boolean isAnagram(String s, String t) {
+        if (s.length() != t.length()) {
+            return false;
+        }
+        char[] chars = s.toCharArray();
+        char[] chars1 = t.toCharArray();
+        int check = 0;
+        for (int i = 0; i < chars1.length; i++) {
+            b:
+            for (int j = 0; j < chars.length; j++) {
+                if (chars1[i] == chars[j]) {
+                    chars[j] = ' ';
+                    check++;
+                    break b;
+                }
+            }
+        }
+        return check == s.length();
+    }
 }
