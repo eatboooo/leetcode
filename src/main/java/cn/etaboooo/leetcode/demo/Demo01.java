@@ -340,13 +340,14 @@ public class Demo01 {
 
     /**
      * https://leetcode-cn.com/problems/majority-element/
-     *
+     * <p>
      * 害有一种排序思路
-     *      public int majorityElement(int[] nums) {
-     *         Arrays.sort(nums);
-     *         return nums[nums.length >> 1];
-     *      }
+     * public int majorityElement(int[] nums) {
+     * Arrays.sort(nums);
+     * return nums[nums.length >> 1];
+     * }
      * 还有摩尔投票法，参考官网
+     *
      * @Description: 169. 多数元素
      * @Param: [nums]
      * @return: int
@@ -358,7 +359,7 @@ public class Demo01 {
         for (int i = 0; i < nums.length; i++) {
             int num = nums[i];
             count = 1;
-            for (int j = i+1; j < nums.length; j++) {
+            for (int j = i + 1; j < nums.length; j++) {
                 if (nums[i] == nums[j]) {
                     count++;
                 }
@@ -368,5 +369,40 @@ public class Demo01 {
             }
         }
         return nums[0];
+    }
+
+    /**
+     * https://leetcode-cn.com/problems/merge-two-sorted-lists/
+     *
+     * @Description: 21. 合并两个有序链表
+     * @Param: [l1, l2]
+     * @return: cn.etaboooo.bean.ListNode
+     * @Author: weiZhiLin
+     * @Date: 2021/6/13 22:47
+     */
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        if (l1 == null || l2 == null) {
+            return l1 == null ? l2 : l1;
+        }
+        // 先找出第一个节点小的作为 first
+        ListNode head = l1.val < l2.val ? l1 : l2;
+        ListNode cur1 = head.next;
+        ListNode cur2 = head == l1 ? l2 : l1;
+        ListNode pre = head;
+
+        while (cur1 != null && cur2 != null) {
+            if (cur1.val > cur2.val) {
+                pre.next = cur2;
+                cur2 = cur2.next;
+            } else {
+                pre.next = cur1;
+                cur1 = cur1.next;
+            }
+            // 不能忘！
+            pre = pre.next;
+        }
+        pre.next = cur1 == null ? cur2 : cur1;
+
+        return head;
     }
 }
