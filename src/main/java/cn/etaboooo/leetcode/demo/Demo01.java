@@ -434,4 +434,31 @@ public class Demo01 {
         }
         return check == s.length();
     }
+
+    /**
+     * https://leetcode-cn.com/problems/move-zeroes/
+     *
+     * @Description: 283. 移动零
+     * @Param: [nums]
+     * @return: void
+     * @Author: weiZhiLin
+     * @Date: 2021/6/14 23:08
+     */
+    public void moveZeroes(int[] nums) {
+        // 记录零的最后的位置
+        int t = nums.length;
+        for (int i = 0; i < t; i++) {
+            for (int j = 0; j < t - 1; j++) {
+                if (nums[j] == 0) {
+                    swapArr(nums, j, j + 1);
+                }
+            }
+        }
+    }
+
+    public void swapArr(int[] arr, int x, int y) {
+        arr[x] = arr[y] + arr[x];
+        arr[y] = arr[x] - arr[y];
+        arr[x] = arr[x] - arr[y];
+    }
 }
