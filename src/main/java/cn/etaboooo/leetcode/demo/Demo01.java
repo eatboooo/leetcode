@@ -588,7 +588,7 @@ public class Demo01 {
 
     /**
      * https://leetcode-cn.com/problems/intersection-of-two-linked-lists/
-     *
+     *  还有一种双指针写法必须复习
      * @Description: 160. 相交链表
      * @Param: [headA, headB]
      * @return: cn.etaboooo.bean.ListNode
