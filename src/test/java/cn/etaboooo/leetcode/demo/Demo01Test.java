@@ -82,4 +82,13 @@ class Demo01Test {
         int i = Demo01.missingNumber(new int[]{1, 2, 3,0});
         System.out.println(i);
     }
+
+    @Test
+    void isHappy() {
+        for (int i = 0; i < 1000; i++) {
+            System.out.println(i);
+            boolean happy = Demo01.isHappy(i);
+            System.out.println(happy);
+        }
+    }
 }

@@ -537,6 +537,7 @@ public class Demo01 {
     /**
      * https://leetcode-cn.com/problems/missing-number/
      * 等差数列求和 Sn=n(a1+an)/2
+     *
      * @Description: 268. 丢失的数字
      * @Param: [nums]
      * @return: int
@@ -550,5 +551,36 @@ public class Demo01 {
             tmep += nums[i];
         }
         return sum - tmep;
+    }
+
+    /**
+     * https://leetcode-cn.com/problems/happy-number/submissions/
+     *
+     * @Description: 202. 快乐数
+     * @Param: [n]
+     * @return: boolean
+     * @Author: weiZhiLin
+     * @Date: 2021/6/17 11:59
+     */
+    public static boolean isHappy(int n) {
+        int i = checkHappy(n);
+        return i == 1;
+    }
+
+    private static int checkHappy(int n) {
+        if (n <= 3) {
+            return n;
+        }
+        int sum = 0;
+        while (n > 0) {
+            int n1 = n % 10;
+            sum += n1 * n1;
+            n = (n - n1) / 10;
+        }
+        // 很关键，防止无限循环
+        if (sum == 4) {
+            return -1;
+        }
+        return checkHappy(sum);
     }
 }
