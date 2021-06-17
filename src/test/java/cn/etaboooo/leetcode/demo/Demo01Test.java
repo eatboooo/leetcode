@@ -76,4 +76,10 @@ class Demo01Test {
 
         System.out.println(sum);
     }
+
+    @Test
+    void missingNumber() {
+        int i = Demo01.missingNumber(new int[]{1, 2, 3,0});
+        System.out.println(i);
+    }
 }

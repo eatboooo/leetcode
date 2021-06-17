@@ -478,12 +478,12 @@ public class Demo01 {
             char aChar = chars[i];
             switch (aChar) {
                 case 'I':
-                    if (i < chars.length - 1 && chars[i+1] == 'V') {
+                    if (i < chars.length - 1 && chars[i + 1] == 'V') {
                         sum += 4;
                         i++;
                         break;
                     }
-                    if (i < chars.length - 1 && chars[i+1] == 'X') {
+                    if (i < chars.length - 1 && chars[i + 1] == 'X') {
                         sum += 9;
                         i++;
                         break;
@@ -495,12 +495,12 @@ public class Demo01 {
                     sum += 5;
                     break;
                 case 'X':
-                    if (i < chars.length - 1 && chars[i+1] == 'L') {
+                    if (i < chars.length - 1 && chars[i + 1] == 'L') {
                         sum += 40;
                         i++;
                         break;
                     }
-                    if (i < chars.length - 1 && chars[i+1] == 'C') {
+                    if (i < chars.length - 1 && chars[i + 1] == 'C') {
                         sum += 90;
                         i++;
                         break;
@@ -511,12 +511,12 @@ public class Demo01 {
                     sum += 50;
                     break;
                 case 'C':
-                    if (i < chars.length - 1 && chars[i+1] == 'D') {
+                    if (i < chars.length - 1 && chars[i + 1] == 'D') {
                         sum += 400;
                         i++;
                         break;
                     }
-                    if (i < chars.length - 1 && chars[i+1] == 'M') {
+                    if (i < chars.length - 1 && chars[i + 1] == 'M') {
                         sum += 900;
                         i++;
                         break;
@@ -532,5 +532,23 @@ public class Demo01 {
             }
         }
         return sum;
+    }
+
+    /**
+     * https://leetcode-cn.com/problems/missing-number/
+     * 等差数列求和 Sn=n(a1+an)/2
+     * @Description: 268. 丢失的数字
+     * @Param: [nums]
+     * @return: int
+     * @Author: weiZhiLin
+     * @Date: 2021/6/16 21:43
+     */
+    public static int missingNumber(int[] nums) {
+        int sum = ((nums.length + 1) * nums.length) >> 1;
+        int tmep = 0;
+        for (int i = 0; i < nums.length; i++) {
+            tmep += nums[i];
+        }
+        return sum - tmep;
     }
 }
