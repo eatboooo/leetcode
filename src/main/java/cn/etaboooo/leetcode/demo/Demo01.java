@@ -11,7 +11,9 @@ import cn.etaboooo.bean.ListNode;
 import cn.etaboooo.bean.TreeNode;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Demo01
@@ -582,5 +584,31 @@ public class Demo01 {
             return -1;
         }
         return checkHappy(sum);
+    }
+
+    /**
+     * https://leetcode-cn.com/problems/intersection-of-two-linked-lists/
+     *
+     * @Description: 160. 相交链表
+     * @Param: [headA, headB]
+     * @return: cn.etaboooo.bean.ListNode
+     * @Author: weiZhiLin
+     * @Date: 2021/6/17 16:34
+     */
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        Set<ListNode> visited = new HashSet<ListNode>();
+        ListNode temp = headA;
+        while (temp != null) {
+            visited.add(temp);
+            temp = temp.next;
+        }
+        temp = headB;
+        while (temp != null) {
+            if (visited.contains(temp)) {
+                return temp;
+            }
+            temp = temp.next;
+        }
+        return null;
     }
 }
