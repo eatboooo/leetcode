@@ -616,6 +616,7 @@ public class Demo01 {
     /**
      * https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/
      * 暴力法多次都超时了。循环一次都方法美只只
+     *
      * @Description: 121. 买卖股票的最佳时机
      * @Param: [prices]
      * @return: int
@@ -635,5 +636,25 @@ public class Demo01 {
             }
         }
         return maxprofit;
+    }
+
+    /**
+     * https://leetcode-cn.com/problems/contains-duplicate/
+     * 暴力方法超时了 所以借助一下hashset
+     * @Description: 217. 存在重复元素
+     * @Param: [nums]
+     * @return: boolean
+     * @Author: weiZhiLin
+     * @Date: 2021/6/18 19:21
+     */
+    public boolean containsDuplicate(int[] nums) {
+        HashSet<Integer> objects = new HashSet<>();
+        for (int i = 0; i < nums.length; i++) {
+            int num = nums[i];
+            if (!objects.add(num)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

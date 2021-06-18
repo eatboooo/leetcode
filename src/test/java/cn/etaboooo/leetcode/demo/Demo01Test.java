@@ -4,6 +4,7 @@ import cn.etaboooo.bean.ListNode;
 import cn.etaboooo.bean.TreeNode;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -107,5 +108,13 @@ class Demo01Test {
       /*  stack.pop();
         System.out.println(stack.top());
         System.out.println(stack.getMin());*/
+    }
+
+    @Test
+    void myTest01() {
+        HashSet<Integer> objects = new HashSet<>();
+        System.out.println(objects.add(1));
+        // 打印 false
+        System.out.println(objects.add(1));
     }
 }
