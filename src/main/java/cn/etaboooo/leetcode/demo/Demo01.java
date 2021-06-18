@@ -588,7 +588,8 @@ public class Demo01 {
 
     /**
      * https://leetcode-cn.com/problems/intersection-of-two-linked-lists/
-     *  还有一种双指针写法必须复习
+     * 还有一种双指针写法必须复习
+     *
      * @Description: 160. 相交链表
      * @Param: [headA, headB]
      * @return: cn.etaboooo.bean.ListNode
@@ -610,5 +611,29 @@ public class Demo01 {
             temp = temp.next;
         }
         return null;
+    }
+
+    /**
+     * https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/
+     * 暴力法多次都超时了。循环一次都方法美只只
+     * @Description: 121. 买卖股票的最佳时机
+     * @Param: [prices]
+     * @return: int
+     * @Author: weiZhiLin
+     * @Date: 2021/6/18 17:56
+     */
+    public int maxProfit1(int[] prices) {
+        int maxprofit = 0;
+        // 记录今天之前的最低点
+        int min = prices[0];
+        for (int i = 1; i < prices.length; i++) {
+            if (min > prices[i]) {
+                min = prices[i];
+            } else if (maxprofit < prices[i] - min) {
+                // 假设我在最低点买的，今天卖出能挣多少¥
+                maxprofit = prices[i] - min;
+            }
+        }
+        return maxprofit;
     }
 }
