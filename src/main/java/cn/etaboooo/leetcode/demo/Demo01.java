@@ -641,6 +641,7 @@ public class Demo01 {
     /**
      * https://leetcode-cn.com/problems/contains-duplicate/
      * 暴力方法超时了 所以借助一下hashset
+     * 还有先排序，然后和前一个元素比较
      * @Description: 217. 存在重复元素
      * @Param: [nums]
      * @return: boolean
