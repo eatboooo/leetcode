@@ -642,6 +642,7 @@ public class Demo01 {
      * https://leetcode-cn.com/problems/contains-duplicate/
      * 暴力方法超时了 所以借助一下hashset
      * 还有先排序，然后和前一个元素比较
+     *
      * @Description: 217. 存在重复元素
      * @Param: [nums]
      * @return: boolean
@@ -657,5 +658,28 @@ public class Demo01 {
             }
         }
         return false;
+    }
+
+    /**
+     * https://leetcode-cn.com/problems/symmetric-tree/
+     * 需要复习
+     *
+     * @Description: 101. 对称二叉树
+     * @Param: [root]
+     * @return: boolean
+     * @Author: weiZhiLin
+     * @Date: 2021/6/21 22:25
+     */
+    public boolean isSymmetric(TreeNode root) {
+        return checkIsSymmetric(root.left, root.right);
+    }
+    private boolean checkIsSymmetric(TreeNode left, TreeNode right) {
+        if (left == null && right == null) {
+            return true;
+        }
+        if (left == null || right == null) {
+            return false;
+        }
+        return left.val == right.val && checkIsSymmetric(left.left, right.right) && checkIsSymmetric(left.right, right.left);
     }
 }
