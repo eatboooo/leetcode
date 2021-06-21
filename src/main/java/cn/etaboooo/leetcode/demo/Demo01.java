@@ -10,10 +10,7 @@ package cn.etaboooo.leetcode.demo;
 import cn.etaboooo.bean.ListNode;
 import cn.etaboooo.bean.TreeNode;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Demo01
@@ -673,6 +670,7 @@ public class Demo01 {
     public boolean isSymmetric(TreeNode root) {
         return checkIsSymmetric(root.left, root.right);
     }
+
     private boolean checkIsSymmetric(TreeNode left, TreeNode right) {
         if (left == null && right == null) {
             return true;
@@ -681,5 +679,48 @@ public class Demo01 {
             return false;
         }
         return left.val == right.val && checkIsSymmetric(left.left, right.right) && checkIsSymmetric(left.right, right.left);
+    }
+
+    /**
+     * https://leetcode-cn.com/problems/intersection-of-two-arrays-ii/
+     * 先排序，然后使用两个指针找交集 - 感觉有点蠢
+     *
+     * @Description: 350. 两个数组的交集 II
+     * @Param: [nums1, nums2]
+     * @return: int[]
+     * @Author: weiZhiLin
+     * @Date: 2021/6/21 22:46
+     */
+    public static int[] intersect(int[] nums1, int[] nums2) {
+        Arrays.sort(nums1);
+        Arrays.sort(nums2);
+        int[] temp = nums1.length <= nums2.length ? nums1 : nums2;
+        int[] temp2 = nums1.length > nums2.length ? nums1 : nums2;
+        int size = 0;
+        LinkedList<Integer> list = new LinkedList<>();
+        for (int i = 0; i < temp.length; i++) {
+            if (size >= temp2.length) {
+                break;
+            }
+            if (temp[i] > temp2[size]) {
+                size++;
+                i--;
+                continue;
+            }
+            if (temp[i] == temp2[size]) {
+                size++;
+                list.add(temp[i]);
+            }
+        }
+        return convertListToArray(list);
+    }
+
+    public static int[] convertListToArray(List<Integer> listResult) {
+        int[] result = new int[listResult.size()];
+        int i = 0;
+        for (int num : listResult) {
+            result[i++] = num;
+        }
+        return result;
     }
 }

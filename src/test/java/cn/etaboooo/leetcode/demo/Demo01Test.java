@@ -117,4 +117,10 @@ class Demo01Test {
         // 打印 false
         System.out.println(objects.add(1));
     }
+
+    @Test
+    void intersect() {
+        int[] intersect = Demo01.intersect(new int[]{1, 1, 3, 4, 54, 2}, new int[]{1, 1, 7, 8, 3, 21});
+        Base01.printArr(intersect);
+    }
 }
