@@ -696,6 +696,13 @@ public class Demo01 {
         Arrays.sort(nums2);
         int[] temp = nums1.length <= nums2.length ? nums1 : nums2;
         int[] temp2 = nums1.length > nums2.length ? nums1 : nums2;
+        /*
+        其实完全可以这样 - 呆b了
+         if (nums1.length > nums2.length) {
+            return intersect(nums2, nums1);
+        }
+        还有一种 hashmap 的方法 ，主要是使用 map.getOrDefault(num, 0) + 1
+        * */
         int size = 0;
         LinkedList<Integer> list = new LinkedList<>();
         for (int i = 0; i < temp.length; i++) {
