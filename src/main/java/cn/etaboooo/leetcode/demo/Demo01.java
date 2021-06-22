@@ -812,4 +812,30 @@ public class Demo01 {
         return -1;
     }
      */
+
+    /**
+     * https://leetcode-cn.com/problems/climbing-stairs/
+     * 动态规划直接超时 需要复习
+     * 这里使用滚动数组 需要复习 看官网图解
+     * @Description: 70. 爬楼梯
+     * @Param: [n]
+     * @return: int
+     * @Author: weiZhiLin
+     * @Date: 2021/6/22 17:35
+     */
+    public int climbStairs(int n) {
+        int p = 0, q = 0, r = 1;
+        for (int i = 1; i <= n; ++i) {
+            p = q;
+            q = r;
+            r = p + q;
+        }
+        return r;
+    }
+    /*public static int climbStairs(int n) {
+        if (n < 4) {
+            return n;
+        }
+        return climbStairs(n - 1) + climbStairs(n - 2);
+    }*/
 }

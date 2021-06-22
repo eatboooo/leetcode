@@ -148,4 +148,10 @@ class Demo01Test {
         int i1 = Demo01.firstUniqChar("");
         System.out.println("i = " + i1);
     }
+
+    @Test
+    void climbStairs() {
+        int i = Demo01.climbStairs(43);
+        System.out.println("i = " + i);
+    }
 }
