@@ -123,4 +123,22 @@ class Demo01Test {
         int[] intersect = Demo01.intersect(new int[]{1, 1, 3, 4, 54, 2}, new int[]{1, 1, 7, 8, 3, 21});
         Base01.printArr(intersect);
     }
+
+    @Test
+    void myTest02() {
+        int[] intersect = new int[]{1, 1, 3, 4, 54, 2};
+        int[] temp = intersect;
+        temp[0] = -100;
+        Base01.printArr(intersect);
+        Base01.printArr(temp);
+    }
+
+    @Test
+    void removeDuplicates() {
+        int[] intersect = new int[]{1, 1, 3, 4, 54,99};
+        int i = Demo01.removeDuplicates(intersect);
+        int i2 = Demo01.removeDuplicates(new int[]{});
+
+        Base01.printArr(intersect);
+    }
 }

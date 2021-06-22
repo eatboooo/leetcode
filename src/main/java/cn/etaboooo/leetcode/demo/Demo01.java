@@ -735,6 +735,7 @@ public class Demo01 {
     /**
      * https://leetcode-cn.com/problems/maximum-subarray/
      * 动态规划，需要复习
+     *
      * @Description: 53. 最大子序和
      * @Param: [nums]
      * @return: int
@@ -749,5 +750,29 @@ public class Demo01 {
             max = Math.max(max, pre);
         }
         return max;
+    }
+
+    /**
+     * https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/
+     * 和前一个比就完事了，注意边界条件
+     *
+     * @Description: 26. 删除有序数组中的重复项
+     * @Param: [nums]
+     * @return: int
+     * @Author: weiZhiLin
+     * @Date: 2021/6/22 11:12
+     */
+    public static int removeDuplicates(int[] nums) {
+        if (nums.length == 0) {
+            return 0;
+        }
+        int size = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if ((i + 1) == nums.length || nums[i] != nums[i + 1]) {
+                nums[size++] = nums[i];
+            }
+        }
+        nums = Arrays.copyOfRange(nums, 0, size - 1);
+        return size;
     }
 }
