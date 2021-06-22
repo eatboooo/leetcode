@@ -135,10 +135,17 @@ class Demo01Test {
 
     @Test
     void removeDuplicates() {
-        int[] intersect = new int[]{1, 1, 3, 4, 54,99};
+        int[] intersect = new int[]{1, 1, 3, 4, 54, 99};
         int i = Demo01.removeDuplicates(intersect);
         int i2 = Demo01.removeDuplicates(new int[]{});
 
         Base01.printArr(intersect);
+    }
+
+    @Test
+    void firstUniqChar() {
+        int i = Demo01.firstUniqChar("ccbba");
+        int i1 = Demo01.firstUniqChar("");
+        System.out.println("i = " + i1);
     }
 }

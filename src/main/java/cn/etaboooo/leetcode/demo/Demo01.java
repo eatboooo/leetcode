@@ -775,4 +775,41 @@ public class Demo01 {
         nums = Arrays.copyOfRange(nums, 0, size - 1);
         return size;
     }
+
+    /**
+     * https://leetcode-cn.com/problems/first-unique-character-in-a-string/
+     * 效率很低，需要更换
+     * 记得使用relaceFirest方法
+     *
+     * @Description: 387. 字符串中的第一个唯一字符
+     * @Param: [s]
+     * @return: int
+     * @Author: weiZhiLin
+     * @Date: 2021/6/22 11:49
+     */
+    public static int firstUniqChar(String s) {
+        for (int i = 0; i < s.length(); i++) {
+            String replace = s.replaceFirst(String.valueOf(s.charAt(i)), String.valueOf((char) (s.charAt(i) + 1)));
+            if (!replace.contains(String.valueOf(s.charAt(i)))) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    /*
+    这个方法快一点，还有一种hashmap的 重要是 map.getOrDefault(ch, 0) + 1
+    public int firstUniqChar(String s) {
+       int[] arr = new int[26];
+        int n = s.length();
+        for (int i = 0; i < n; i++) {
+            arr[s.charAt(i)-'a']++ ;
+        }
+        for (int i = 0; i < n; i++) {
+            if (arr[s.charAt(i)-'a'] == 1) {
+                return i;
+            }
+        }
+        return -1;
+    }
+     */
 }
