@@ -817,6 +817,7 @@ public class Demo01 {
      * https://leetcode-cn.com/problems/climbing-stairs/
      * 动态规划直接超时 需要复习
      * 这里使用滚动数组 需要复习 看官网图解
+     *
      * @Description: 70. 爬楼梯
      * @Param: [n]
      * @return: int
@@ -839,18 +840,20 @@ public class Demo01 {
         return climbStairs(n - 1) + climbStairs(n - 2);
     }*/
 
-    /** https://leetcode-cn.com/problems/two-sum/
+    /**
+     * https://leetcode-cn.com/problems/two-sum/
      * 使用了双循环暴力方法，还有一种hashMap方法 参考官网
-        * @Description: 1. 两数之和
-        * @Param: [nums, target] 
-        * @return: int[] 
-        * @Author: weiZhiLin
-        * @Date: 2021/6/22 17:52
-    */ 
+     *
+     * @Description: 1. 两数之和
+     * @Param: [nums, target]
+     * @return: int[]
+     * @Author: weiZhiLin
+     * @Date: 2021/6/22 17:52
+     */
     public int[] twoSum(int[] nums, int target) {
         int[] temp = new int[2];
         for (int i = 0; i < nums.length; i++) {
-            for (int j = i+1; j < nums.length; j++) {
+            for (int j = i + 1; j < nums.length; j++) {
                 if (nums[i] + nums[j] == target) {
                     temp[0] = i;
                     temp[1] = j;
@@ -859,5 +862,26 @@ public class Demo01 {
             }
         }
         return temp;
+    }
+
+    /**
+     * https://leetcode-cn.com/problems/linked-list-cycle/
+     * 使用 hashSet 完事
+     * 还有一种快慢指针，之前的题也遇到过 需要复习
+     * @Description: 141. 环形链表
+     * @Param: [head]
+     * @return: boolean
+     * @Author: weiZhiLin
+     * @Date: 2021/6/22 18:14
+     */
+    public boolean hasCycle(ListNode head) {
+        Set<ListNode> set = new HashSet<>();
+        while (head != null) {
+            if (!set.add(head)) {
+                return true;
+            }
+            head = head.next;
+        }
+        return false;
     }
 }
