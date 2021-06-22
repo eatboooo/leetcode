@@ -838,4 +838,26 @@ public class Demo01 {
         }
         return climbStairs(n - 1) + climbStairs(n - 2);
     }*/
+
+    /** https://leetcode-cn.com/problems/two-sum/
+     * 使用了双循环暴力方法，还有一种hashMap方法 参考官网
+        * @Description: 1. 两数之和
+        * @Param: [nums, target] 
+        * @return: int[] 
+        * @Author: weiZhiLin
+        * @Date: 2021/6/22 17:52
+    */ 
+    public int[] twoSum(int[] nums, int target) {
+        int[] temp = new int[2];
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i+1; j < nums.length; j++) {
+                if (nums[i] + nums[j] == target) {
+                    temp[0] = i;
+                    temp[1] = j;
+                    return temp;
+                }
+            }
+        }
+        return temp;
+    }
 }
