@@ -868,6 +868,7 @@ public class Demo01 {
      * https://leetcode-cn.com/problems/linked-list-cycle/
      * 使用 hashSet 完事
      * 还有一种快慢指针，之前的题也遇到过 需要复习
+     *
      * @Description: 141. 环形链表
      * @Param: [head]
      * @return: boolean
@@ -883,5 +884,24 @@ public class Demo01 {
             head = head.next;
         }
         return false;
+    }
+
+    /**
+     * https://leetcode-cn.com/problems/merge-sorted-array/solution/he-bing-liang-ge-you-xu-shu-zu-by-leetco-rrb0/
+     * 直接合并再排序 - 最容易想到的
+     * 需要复习 官网的逆向双指针
+     *
+     * @Description: 88. 合并两个有序数组
+     * @Param: [nums1, m, nums2, n]
+     * @return: void
+     * @Author: weiZhiLin
+     * @Date: 2021/6/23 18:35
+     */
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int index = 0;
+        for (int i = m; i < m + n; i++) {
+            nums1[i] = nums2[index++];
+        }
+        Arrays.sort(nums1);
     }
 }
