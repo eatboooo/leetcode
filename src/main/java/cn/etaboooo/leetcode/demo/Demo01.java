@@ -930,4 +930,46 @@ public class Demo01 {
     public static boolean isPowerOfThree02(int n) {
         return Integer.toString(n, 3).matches("^10*$");
     }
+
+    /**
+     * https://leetcode-cn.com/problems/palindrome-linked-list/
+     * 边界条件真的烦
+     * @Description: 234. 回文链表
+     * @Param: [head]
+     * @return: boolean
+     * @Author: weiZhiLin
+     * @Date: 2021/6/24 18:48
+     */
+    public static boolean isPalindrome(ListNode head) {
+        // 算出长度
+        int size = 0;
+        ListNode temp = head;
+        while (temp != null) {
+            size++;
+            temp = temp.next;
+        }
+        if (size <= 1) {
+            return true;
+        }
+        Stack<Integer> integers = new Stack<>();
+        int index = 0;
+        while (head != null) {
+            if (index < size / 2) {
+                // 循环到一半，每次放入栈
+                integers.push(head.val);
+            } else if (size % 2 != 0 && index == size / 2) {
+                head = head.next;
+                index++;
+                continue;
+            } else {
+                // 和栈里面的对比
+                if (integers.pop() != head.val) {
+                    return false;
+                }
+            }
+            head = head.next;
+            index++;
+        }
+        return true;
+    }
 }

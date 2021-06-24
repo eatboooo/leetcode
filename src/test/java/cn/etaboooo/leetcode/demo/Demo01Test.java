@@ -154,4 +154,16 @@ class Demo01Test {
         boolean powerOfThree02 = Demo01.isPowerOfThree02(27);
         System.out.println("powerOfThree02 = " + powerOfThree02);
     }
+
+    @Test
+    void isPalindrome() {
+        ListNode listNode = new ListNode(1);
+        listNode.next = new ListNode(0);
+        listNode.next.next = new ListNode(0);
+//        listNode.next.next.next = new ListNode(0);
+//        listNode.next.next.next.next = new ListNode(1);
+        boolean palindrome = Demo01.isPalindrome(listNode);
+        System.out.println("palindrome = " + palindrome);
+    }
+
 }
