@@ -151,7 +151,7 @@ class Demo01Test {
 
     @Test
     void climbStairs() {
-        int i = Demo01.climbStairs(43);
-        System.out.println("i = " + i);
+        boolean powerOfThree02 = Demo01.isPowerOfThree02(27);
+        System.out.println("powerOfThree02 = " + powerOfThree02);
     }
 }

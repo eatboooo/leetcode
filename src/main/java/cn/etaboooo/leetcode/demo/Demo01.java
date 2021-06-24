@@ -904,4 +904,30 @@ public class Demo01 {
         }
         Arrays.sort(nums1);
     }
+
+    /**
+     * https://leetcode-cn.com/problems/power-of-three/
+     * 自己用的循环，太土了不满意
+     * 参考网络转换为三进制然后使用正则 - 需要复习
+     *
+     * @Description: 326. 3的幂
+     * @Param: [n]
+     * @return: boolean
+     * @Author: weiZhiLin
+     * @Date: 2021/6/24 17:49
+     */
+    public static boolean isPowerOfThree(int n) {
+        while (n > 3) {
+            if (n % 3 != 0) {
+                return false;
+            }
+            n /= 3;
+        }
+        return n == 3 || n == 1;
+    }
+
+    // 对于10进制数来说，10的n次幂表达为10，100，100 对于2进制数来说，2的n次幂的二进制表达为 10,100,100 3进制同理
+    public static boolean isPowerOfThree02(int n) {
+        return Integer.toString(n, 3).matches("^10*$");
+    }
 }
