@@ -7,10 +7,16 @@
 package cn.etaboooo.leetcode.demo;
 
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
+import java.util.Stack;
+
 import cn.etaboooo.bean.ListNode;
 import cn.etaboooo.bean.TreeNode;
-
-import java.util.*;
 
 /**
  * Demo01
@@ -971,5 +977,58 @@ public class Demo01 {
             index++;
         }
         return true;
+    }
+
+    /*
+     * https://leetcode-cn.com/problems/valid-palindrome/
+     * @description 125. 验证回文串
+     * @param s
+     * @return boolean
+     * @date 2021/6/28 18:28
+     * @author weizhilin
+     * @version 1.0
+     */
+    public static boolean isPalindrome(String s) {
+        /*  a-z：97-122
+            A-Z：65-90
+            0-9：48-57
+         */
+        int i = 0;
+        StringBuilder sb = new StringBuilder();
+        while (i < s.length()) {
+            if (isNumAndLetter(s.charAt(i))) {
+                sb.append(s.charAt(i));
+            }
+            i++;
+        }
+        s = sb.toString();
+        int length = s.length();
+        int l = s.length() / 2 - 1;
+        int r = s.length() % 2 == 0 ? s.length() / 2 : s.length() / 2 + 1;
+        while (l >= 0 && r <= length - 1) {
+            if (s.charAt(l) != s.charAt(r) && (!((String.valueOf(s.charAt(l))).equalsIgnoreCase(String.valueOf(s.charAt(r)))))) {
+                return false;
+            }
+            l--;
+            r++;
+        }
+        return true;
+    }
+
+    public static boolean isNumAndLetter(char a) {
+        /*  a-z：97-122
+            A-Z：65-90
+            0-9：48-57
+         */
+        if (a >= 48 && a <= 57) {
+            return true;
+        }
+        if (a >= 65 && a <= 90) {
+            return true;
+        }
+        if (a >= 97 && a <= 122) {
+            return true;
+        }
+        return false;
     }
 }

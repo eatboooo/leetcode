@@ -166,4 +166,11 @@ class Demo01Test {
         System.out.println("palindrome = " + palindrome);
     }
 
+    @Test
+    void isPalindrome02() {
+        System.out.println('0' - 'P');
+        System.out.println('p' - 'P');
+        boolean palindrome = Demo01.isPalindrome("\"0P\"");
+        System.out.println("palindrome = " + palindrome);
+    }
 }
