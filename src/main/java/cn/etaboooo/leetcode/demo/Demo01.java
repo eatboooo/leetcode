@@ -1031,4 +1031,56 @@ public class Demo01 {
         }
         return false;
     }
+
+    /**
+     *
+     * Demo01
+     * https://leetcode-cn.com/problems/plus-one/
+     * @description 66. 加一
+     * @param digits
+     * @return int[]
+     * @date 2021/7/2 9:58
+     * @author weiZhiLin
+     * @version 1.0
+     */
+    public static int[] plusOne(int[] digits) {
+        int i = digits.length - 1;
+        return arrIndexPlus(digits, i);
+    }
+
+    private static int[] arrIndexPlus(int[] digits, int i) {
+        if (i < 0) {
+            int[] ints = new int[digits.length + 1];
+            for (int j = 0; j < digits.length; j++) {
+                ints[j] = digits[j];
+            }
+            digits = ints;
+            digits[0] = 1;
+            return digits;
+        }
+        int digit = digits[i];
+        if (digit + 1 == 10) {
+            digits[i] = 0;
+            return arrIndexPlus(digits, --i);
+        } else {
+            digits[i] += 1;
+            return digits;
+        }
+    }
+/*
+    private static int[] intToArr(int v) {
+        int tempV = v;
+        // 计算生成数组的长度
+        int l = 1;
+        while (v > 10) {
+            v = v / 10;
+            l++;
+        }
+        int[] arr = new int[l];
+        l--;
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = (int) (tempV / (Math.pow(10, l--)));
+        }
+        return arr;
+    }*/
 }

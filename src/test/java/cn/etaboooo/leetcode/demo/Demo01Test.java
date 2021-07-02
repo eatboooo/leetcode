@@ -173,4 +173,11 @@ class Demo01Test {
         boolean palindrome = Demo01.isPalindrome("\"0P\"");
         System.out.println("palindrome = " + palindrome);
     }
+
+    @Test
+    void myTest03(){
+        int[] ints = Demo01.plusOne(new int[]{1,9});
+        Base01.printArr(ints);
+
+    }
 }
