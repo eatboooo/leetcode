@@ -2,6 +2,7 @@ package cn.etaboooo.leetcode.demo;
 
 import cn.etaboooo.bean.ListNode;
 import cn.etaboooo.bean.TreeNode;
+import cn.etaboooo.demo.algorithm.ThreadDemo01;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
@@ -178,6 +179,10 @@ class Demo01Test {
     void myTest03(){
         int[] ints = Demo01.plusOne(new int[]{1,9});
         Base01.printArr(ints);
+    }
 
+    @Test
+    void myTest04() throws InterruptedException {
+        ThreadDemo01.printSmt();
     }
 }
