@@ -9,13 +9,13 @@ import java.util.concurrent.locks.ReentrantLock;
  * @date 2021/7/2 23:26
  */
 public class ThreadDemo01 {
-    /** 
-        * @Description: 交替打印 
-        * @Param:  
-        * @return: void 
-        * @Author: weiZhiLin
-        * @Date: 2021/7/3 00:05
-    */ 
+    /**
+     * @Description: 交替打印
+     * @Param:
+     * @return: void
+     * @Author: weiZhiLin
+     * @Date: 2021/7/3 00:05
+     */
     public static void printSmt() throws InterruptedException {
         String s = "abcde";
         String n = "12345";
@@ -31,6 +31,9 @@ public class ThreadDemo01 {
                 System.out.println("sc = " + aChar);
                 try {
                     nc.signal();
+                    if (i == chars.length - 1) {
+                        break;
+                    }
                     sc.await();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -38,6 +41,7 @@ public class ThreadDemo01 {
                     reentrantLock.unlock();
                 }
             }
+            System.out.println("Override = sc");
         });
 
         Thread t2 = new Thread(() -> {
@@ -47,6 +51,9 @@ public class ThreadDemo01 {
                 System.out.println("nc = " + aChar);
                 try {
                     sc.signal();
+                    if (i == chars1.length - 1) {
+                        break;
+                    }
                     nc.await();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -54,6 +61,7 @@ public class ThreadDemo01 {
                     reentrantLock.unlock();
                 }
             }
+            System.out.println("Override = nc");
         });
         t1.start();
         Thread.sleep(100);
