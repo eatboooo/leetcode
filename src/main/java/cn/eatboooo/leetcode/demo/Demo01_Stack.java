@@ -1,6 +1,6 @@
-package cn.etaboooo.leetcode.demo;
+package cn.eatboooo.leetcode.demo;
 
-import cn.etaboooo.bean.ListNode;
+import cn.eatboooo.bean.ListNode;
 
 /**
  * https://leetcode-cn.com/problems/min-stack/

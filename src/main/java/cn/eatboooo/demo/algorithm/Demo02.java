@@ -1,8 +1,6 @@
-package cn.etaboooo.demo.algorithm;
+package cn.eatboooo.demo.algorithm;
 
 import java.util.HashMap;
-
-import cn.etaboooo.bean.TreeNode;
 
 /**
  * @author weiZhiLin

@@ -1,10 +1,10 @@
 /**
  * @projectName leetcode
- * @package cn.etaboooo.leetcode.demo
- * @className cn.etaboooo.leetcode.demo.Base01
+ * @package cn.eatboooo.leetcode.demo
+ * @className cn.eatboooo.leetcode.demo.Base01
  * @copyright Copyright 2020 Thunisoft, Inc All rights reserved.
  */
-package cn.etaboooo.leetcode.demo;
+package cn.eatboooo.leetcode.demo;
 
 /**
  * Base01

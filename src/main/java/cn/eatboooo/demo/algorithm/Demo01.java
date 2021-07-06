@@ -1,7 +1,4 @@
-package cn.etaboooo.demo.algorithm;
-
-import cn.etaboooo.bean.ListNode;
-import cn.etaboooo.bean.TreeNode;
+package cn.eatboooo.demo.algorithm;
 
 /**
  * @author weiZhiLin

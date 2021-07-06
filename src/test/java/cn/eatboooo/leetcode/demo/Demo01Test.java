@@ -1,12 +1,17 @@
-package cn.etaboooo.leetcode.demo;
+package cn.eatboooo.leetcode.demo;
 
-import cn.etaboooo.bean.ListNode;
-import cn.etaboooo.bean.TreeNode;
-import cn.etaboooo.demo.algorithm.ThreadDemo01;
-import org.junit.jupiter.api.Test;
-
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import org.junit.jupiter.api.Test;
+
+import cn.eatboooo.bean.ListNode;
+import cn.eatboooo.bean.TreeNode;
+import cn.eatboooo.demo.algorithm.ThreadDemo01;
 
 /**
  * @author weiZhiLin
@@ -176,8 +181,8 @@ class Demo01Test {
     }
 
     @Test
-    void myTest03(){
-        int[] ints = Demo01.plusOne(new int[]{1,9});
+    void myTest03() {
+        int[] ints = Demo01.plusOne(new int[]{1, 9});
         Base01.printArr(ints);
     }
 

@@ -1,4 +1,4 @@
-package cn.etaboooo.bean;
+package cn.eatboooo.bean;
 
 /**
  * @author weiZhiLin
@@ -23,7 +23,7 @@ public class ListNode {
      *
      * @description 把数组转化为 list
      * @param x
-     * @return cn.etaboooo.bean.ListNode
+     * @return cn.eatboooo.bean.ListNode
      * @date 2021/5/8 17:51
      * @author weiZhiLin
      * @version 1.0
@@ -44,7 +44,7 @@ public class ListNode {
      * @param list
      * @param x
      * @param index
-     * @return cn.etaboooo.bean.ListNode
+     * @return cn.eatboooo.bean.ListNode
      * @date 2021/5/8 17:50
      * @author weiZhiLin
      * @version 1.0

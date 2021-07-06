@@ -1,6 +1,6 @@
-package cn.etaboooo.study;
+package cn.eatboooo.study;
 
-import cn.etaboooo.bean.ListNode;
+import cn.eatboooo.bean.ListNode;
 
 /**
  * @author weiZhiLin

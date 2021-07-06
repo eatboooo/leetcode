@@ -1,10 +1,10 @@
 /**
  * @projectName leetcode
- * @package cn.etaboooo.leetcode.demo
- * @className cn.etaboooo.leetcode.demo.Demo01
+ * @package cn.eatboooo.leetcode.demo
+ * @className cn.eatboooo.leetcode.demo.Demo01
  * @copyright Copyright 2020 Thunisoft, Inc All rights reserved.
  */
-package cn.etaboooo.leetcode.demo;
+package cn.eatboooo.leetcode.demo;
 
 
 import java.util.ArrayList;
@@ -15,8 +15,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.Stack;
 
-import cn.etaboooo.bean.ListNode;
-import cn.etaboooo.bean.TreeNode;
+import cn.eatboooo.bean.ListNode;
+import cn.eatboooo.bean.TreeNode;
 
 /**
  * Demo01
@@ -68,7 +68,7 @@ public class Demo01 {
      * https://leetcode-cn.com/problems/convert-sorted-array-to-binary-search-tree/
      *
      * @param arr
-     * @return cn.etaboooo.bean.TreeNode
+     * @return cn.eatboooo.bean.TreeNode
      * @description 108. 将有序数组转换为二叉搜索树
      * @date 2021/5/10 16:38
      * @author weiZhiLin
@@ -165,7 +165,7 @@ public class Demo01 {
      * https://leetcode-cn.com/problems/reverse-linked-list/
      *
      * @param head
-     * @return cn.etaboooo.bean.ListNode
+     * @return cn.eatboooo.bean.ListNode
      * @description 206. 反转链表
      * @date 2021/5/21 16:00
      * @author weiZhiLin
@@ -381,7 +381,7 @@ public class Demo01 {
      *
      * @Description: 21. 合并两个有序链表
      * @Param: [l1, l2]
-     * @return: cn.etaboooo.bean.ListNode
+     * @return: cn.eatboooo.bean.ListNode
      * @Author: weiZhiLin
      * @Date: 2021/6/13 22:47
      */
@@ -595,7 +595,7 @@ public class Demo01 {
      *
      * @Description: 160. 相交链表
      * @Param: [headA, headB]
-     * @return: cn.etaboooo.bean.ListNode
+     * @return: cn.eatboooo.bean.ListNode
      * @Author: weiZhiLin
      * @Date: 2021/6/17 16:34
      */

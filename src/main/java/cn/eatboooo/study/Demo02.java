@@ -1,4 +1,4 @@
-package cn.etaboooo.study;
+package cn.eatboooo.study;
 
 import java.util.Arrays;
 

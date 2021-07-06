@@ -1,4 +1,4 @@
-package cn.etaboooo.leetcode.demo;
+package cn.eatboooo.leetcode.demo;
 
 import org.junit.jupiter.api.Test;
 

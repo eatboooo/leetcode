@@ -1,4 +1,4 @@
-package cn.etaboooo.bean;
+package cn.eatboooo.bean;
 
 /**
  * @author weiZhiLin
