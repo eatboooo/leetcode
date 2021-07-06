@@ -24,26 +24,33 @@ import org.junit.jupiter.api.Test;
 public class WorkTest01 {
 
     @Test
-    // 下划线分隔的单词转驼峰命名
-    void test01(){
+        // 下划线分隔的单词转驼峰命名
+    void test01() {
         Map<String, Object> nao = new HashMap<>();
+        Map<String, Object> nao2 = new HashMap<>();
         ArrayList<Map> objects = new ArrayList<>();
         objects.add(nao);
+        objects.add(nao2);
         nao.put("abc_cca", new HashMap<>());
         nao.put("asdCCd", new HashMap<>());
         nao.put("abcdsd_cca", new HashMap<>());
         nao.put("abac_wccsaa", new HashMap<>());
+        nao2.put("abc_cca", new HashMap<>());
+        nao2.put("asdCCd", new HashMap<>());
+        nao2.put("abcdsd_cca", new HashMap<>());
+        nao2.put("abac_wccsaa", new HashMap<>());
         toHumpName(objects);
         for (Map object : objects) {
             Set<String> strings = object.keySet();
             for (String string : strings) {
-                System.out.println("string = " + string);
+                System.out.println(object.hashCode() + "string = " + string);
             }
         }
 
     }
 
     private void toHumpName(List<Map> content) {
+        List<Map> arrayList = new ArrayList();
         for (int i = 0; i < content.size(); i++) {
             Map map = content.get(i);
             Map<String, Object> rmap = new HashMap<>();
@@ -57,9 +64,10 @@ public class WorkTest01 {
                     rmap.put(s, map.get(s));
                 }
             }
-            content.remove(i);
-            content.add(rmap);
+            arrayList.add(rmap);
+            content.remove(i--);
         }
+        content.addAll(arrayList);
     }
 
     private String toHumpNameProcess(String s) {
