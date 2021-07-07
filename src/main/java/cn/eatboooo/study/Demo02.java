@@ -1,6 +1,7 @@
 package cn.eatboooo.study;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 /**
  * @author weiZhiLin
@@ -69,7 +70,7 @@ public class Demo02 {
             return new int[]{-1, -1};
         }
         if (L == R) {
-            return arr;
+            return new int[]{L, R};
         }
         int less = L - 1;
         int more = R;
@@ -86,25 +87,65 @@ public class Demo02 {
         }
         swap(arr, more, R);
         return new int[]{less + 1, more};
-
     }
 
 
     // 快排 1.0，O（N的平方）
 
     // 快排 3.0，O（logN * N），搞个随机数
+    public static void quickSort(int[] arr) {
+        if (arr == null || arr.length < 2) {
+            return;
+        }
+        quickSortProcess(arr,0,arr.length-1);
+    }
 
+    // 块排 3.0 具体实现
+    private static void quickSortProcess(int[] arr, int l, int r) {
+        // 这边是大于等于，第一次写成了 == 导致了数组越界，需要注意
+        if (l >= r) {
+            return;
+        }
+//        swap(arr, L + (int) (Math.random() * (R - L + 1)), R);
+        swap(arr, (int) (Math.random()*(r-l+1)) + l,r);
+        // 使用荷兰国旗问题，帮助确定中间数的位置（确定下标为ints[0]~int[1]的位置）
+        int[] ints = netherlandsFlag(arr, l, r);
+        quickSortProcess(arr,l,ints[0]-1);
+        quickSortProcess(arr,ints[1]+1,r);
+    }
 
     // 堆结构 - 逻辑上是完全二叉树结构
     // 大根堆
     // 小根堆
 
+    // 静态修饰符学习？
 
 
+    // 比较器
+    public static class Person {
+        int age;
+        int id;
 
+        public Person(int age, int id) {
+            this.age = age;
+            this.id = id;
+        }
 
+        @Override
+        public String toString() {
+            return "Person{" +
+                    "age=" + age +
+                    ", id=" + id +
+                    '}';
+        }
+    }
 
-
+    public static class myPersonCompare implements Comparator<Person> {
+        @Override
+        public int compare(Person o1, Person o2) {
+            return o2.age - o1.age;
+        }
+    }
 
 
     public static void swap(int[] arr, int l, int r) {
@@ -167,6 +208,30 @@ public class Demo02 {
 
     // for test
     public static void main(String[] args) {
+         testMerge();
+//        testCompare();
+    }
+
+    // 测试比较器
+    private static void testCompare() {
+        Person p1 = new Person(12, 0);
+        Person p2 = new Person(11, 0);
+        Person p3 = new Person(13, 0);
+        Person[] ps = {p1, p2, p3};
+        System.out.println("===========排序前===========");
+        for (Person p : ps) {
+            System.out.print("p = " + p);
+        }
+        System.out.println();
+        Arrays.sort(ps, new myPersonCompare());
+        System.out.println("===========排序后===========");
+        for (Person p : ps) {
+            System.out.print("p = " + p);
+        }
+    }
+
+    // 测试排序
+    private static void testMerge() {
         int testTime = 500000;
         int maxSize = 100;
         int maxValue = 100;
@@ -174,7 +239,8 @@ public class Demo02 {
         for (int i = 0; i < testTime; i++) {
             int[] arr1 = generateRandomArray(maxSize, maxValue);
             int[] arr2 = copyArray(arr1);
-            mergeSort1(arr1);
+            quickSort(arr1);
+//            mergeSort1(arr1);
             Arrays.sort(arr2);
 //            mergeSort2(arr2);
             if (!isEqual(arr1, arr2)) {
