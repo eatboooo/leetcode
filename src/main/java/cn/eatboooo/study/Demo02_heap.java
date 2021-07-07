@@ -6,6 +6,7 @@ package cn.eatboooo.study;
  * @date 2021/7/6 23:48
  */
 public class Demo02_heap {
+    // 大根堆
     public static class maxHeap {
         int size;
         int[] heap;
@@ -74,17 +75,53 @@ public class Demo02_heap {
             // 下标 size 对应的父节点 （size -1）/2
             // int f = ((i - 1)/2);
             // 到最后 肯定是 f = 0 i = 0，所以一定会跳出循环
-            while (heap[((i - 1)/2)] < heap[i]) {
-                swap(heap,((i - 1)/2), i);
-                i = ((i - 1)/2);
+            while (heap[((i - 1) / 2)] < heap[i]) {
+                swap(heap, ((i - 1) / 2), i);
+                i = ((i - 1) / 2);
             }
         }
 
 
-        public static void swap(int[] arr, int l, int r) {
-            int i = arr[l];
-            arr[l] = arr[r];
-            arr[r] = i;
+    }
+
+    // 堆排序
+    // 堆排序额外空间复杂度O(1)
+    public static void heapSort(int[] arr) {
+        if (arr.length < 2) {
+            return;
+        }
+        // 先把数组搞成大根堆,从后往前构造
+        for (int i = arr.length - 1; i >= 0; i--) {
+            heapify(arr, i, arr.length);
+        }
+        // 然后一个一个往外丢
+        int heapSize = arr.length;
+        swap(arr, 0, --heapSize);
+        // O(N*logN)
+        while (heapSize > 0) { // O(N)
+            heapify(arr, 0, heapSize); // O(logN)
+            swap(arr, 0, --heapSize); // O(1)
+        }
+    }
+
+    private static void heapify(int[] arr, int head, int size) {
+        if (head >= size) {
+            return;
+        }
+        // 和左节点比较
+        int left = (head >> 1 | 1);
+        while (left < size) {
+            // 从左右孩子中选出最大的
+            int la = left + 1 < size && arr[left + 1] > arr[left] ? left + 1 : left;
+            // 比较自己和左右，如果没比过则往下落
+            la = arr[head] > arr[la] ? head : la;
+            if (la == head) {
+                break;
+            }
+            swap(arr, head, la);
+            head = la;
+            // 交换完后继续寻找自己的左孩子
+            left = head << 1 | 1;
         }
 
     }
@@ -100,5 +137,12 @@ public class Demo02_heap {
             int pop = maxHeap.pop();
             System.out.println("pop = " + pop);
         }
+    }
+
+
+    public static void swap(int[] arr, int l, int r) {
+        int i = arr[l];
+        arr[l] = arr[r];
+        arr[r] = i;
     }
 }
