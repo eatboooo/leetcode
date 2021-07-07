@@ -65,12 +65,18 @@ public class Demo02_heap {
         }
 
         private void heapInset(int[] heap, int i) {
-            // 下标 size 对应的父节点 （size -1)>>1
-            // int f = ((i - 1)>>1);
+            //              0
+            //        1           2
+            //     3     4     5     6
+            //   7  8  9  10
+            // 画个完全二叉树
+            // 不可以使用 (i - 1) >> 1，,当 i 为 0 的时候，这个会出现负数的情况
+            // 下标 size 对应的父节点 （size -1）/2
+            // int f = ((i - 1)/2);
             // 到最后 肯定是 f = 0 i = 0，所以一定会跳出循环
-            while (heap[((i - 1) >> 1)] < heap[i]) {
-                swap(heap, ((i - 1) >> 1), i);
-                i = ((i - 1) >> 1);
+            while (heap[((i - 1)/2)] < heap[i]) {
+                swap(heap,((i - 1)/2), i);
+                i = ((i - 1)/2);
             }
         }
 
@@ -81,5 +87,18 @@ public class Demo02_heap {
             arr[r] = i;
         }
 
+    }
+
+    public static void main(String[] args) throws Exception {
+        maxHeap maxHeap = new maxHeap(5);
+        maxHeap.push(1);
+        maxHeap.push(2);
+        maxHeap.push(6);
+        maxHeap.push(4);
+        maxHeap.push(5);
+        while (!maxHeap.isEmpty()) {
+            int pop = maxHeap.pop();
+            System.out.println("pop = " + pop);
+        }
     }
 }

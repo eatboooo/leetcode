@@ -1,11 +1,7 @@
 package cn.eatboooo.leetcode.demo;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -189,5 +185,11 @@ class Demo01Test {
     @Test
     void myTest04() throws InterruptedException {
         ThreadDemo01.printSmt();
+    }
+
+    @Test
+    void myTest05() {
+        System.out.println((0 - 1) / 2);
+        System.out.println((0 - 1) >> 1);
     }
 }
