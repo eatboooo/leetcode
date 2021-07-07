@@ -95,12 +95,15 @@ public class Demo02_heap {
             heapify(arr, i, arr.length);
         }
         // 然后一个一个往外丢
-        int heapSize = arr.length;
-        swap(arr, 0, --heapSize);
-        // O(N*logN)
-        while (heapSize > 0) { // O(N)
-            heapify(arr, 0, heapSize); // O(logN)
-            swap(arr, 0, --heapSize); // O(1)
+        int size = arr.length - 1;
+        // 先丢一个
+        swap(arr,0,--size);
+        // 直到把堆中的东西丢完
+        while (size > 0) {// O(N)
+            // 因为丢了一个，所以往下沉
+            heapify(arr, 0, size);// O(logN)
+            // 沉完接着丢
+            swap(arr,0,--size);
         }
     }
 

@@ -39,6 +39,7 @@ public class Demo02 {
     private static void merge(int[] arr, int l, int mid, int r) {
         // 用于临时存储，最后统一写回去
         int[] help = new int[r - l + 1];
+        // 临时数组的下标
         int i = 0;
         int p1 = l;
         int p2 = mid + 1;
