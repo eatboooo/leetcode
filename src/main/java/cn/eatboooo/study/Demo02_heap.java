@@ -94,8 +94,8 @@ public class Demo02_heap {
         for (int i = arr.length - 1; i >= 0; i--) {
             heapify(arr, i, arr.length);
         }
-        // 然后一个一个往外丢
-        int size = arr.length - 1;
+        // 然后一个一个往外丢 ， 这个必须是 length 否则会出大问题 （ 第一个值会出问题）
+        int size = arr.length;
         // 先丢一个
         swap(arr,0,--size);
         // 直到把堆中的东西丢完
