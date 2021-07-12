@@ -1,4 +1,4 @@
-package cn.eatboooo.study;
+package cn.eatboooo.study.week01;
 
 /**
  * @author weiZhiLin
