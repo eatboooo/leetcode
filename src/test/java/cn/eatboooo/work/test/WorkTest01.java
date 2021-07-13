@@ -6,6 +6,7 @@
  */
 package cn.eatboooo.work.test;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,8 +24,8 @@ import org.junit.jupiter.api.Test;
  */
 public class WorkTest01 {
 
+    // 下划线分隔的单词转驼峰命名
     @Test
-        // 下划线分隔的单词转驼峰命名
     void test01() {
         Map<String, Object> nao = new HashMap<>();
         Map<String, Object> nao2 = new HashMap<>();
@@ -81,5 +82,40 @@ public class WorkTest01 {
         }
         return s1[0];
     }
+
+    // 字符串分隔
+    @Test
+    void test02() {
+        String[] split = "year\\文书类\\永久".split("\\\\");
+        for (int i = 0; i < split.length; i++) {
+            String s = split[i];
+            System.out.println("s = " + s);
+        }
+
+    }
+
+    // if (a == (Integer) 1 && a == (Integer) 2 && a == (Integer) 3) 是否可能成立
+    @Test
+    void test03() {
+        Class cache = Integer.class.getDeclaredClasses()[0];
+        Field c = null;
+        try {
+            c = cache.getDeclaredField("cache");
+            c.setAccessible(true);
+            Integer[] array = (Integer[]) c.get(cache);
+            // array[129] is 1
+            array[130] = array[129];
+            // Set 2 to be 1
+            array[131] = array[129];
+            // Set 3 to be 1
+            Integer a = 1;
+            if (a == (Integer) 1 && a == (Integer) 2 && a == (Integer) 3) {
+                System.out.println("Success");
+            }
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }

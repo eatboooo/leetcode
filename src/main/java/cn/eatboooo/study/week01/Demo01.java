@@ -41,10 +41,11 @@ public class Demo01 {
         ListNode next = null;
         while (head != null) {
             // 注意这里的顺序
+            // 保存原先下一个节点 - 下一个节点改为上一个 - 上一个变成现在 - 现在变成原先下一个
             next = head.next;
             head.next = pre;
             pre = head;
-            head = head.next;
+            head = next;
         }
         return pre;
     }
