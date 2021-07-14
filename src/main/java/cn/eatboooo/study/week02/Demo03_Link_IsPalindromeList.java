@@ -9,7 +9,6 @@ import java.util.Stack;
  * 链表问题
  * 快慢指针、
  * 是否回文链表、
- * 返回链表相交的第一个节点
  */
 public class Demo03_Link_IsPalindromeList {
     public static class Node {
