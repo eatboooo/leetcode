@@ -19,12 +19,17 @@ import java.util.Queue;
  * @version 1.0
  * 按层打印二叉树
  * 二叉树最大宽度
+ * 给你二叉树中的某个节点，返回该节点的后继节点 （后继节点是中序便利的后一个）
+ * 折纸凹凸问题
  */
 public class Demo4_BT_01 {
     public static class Node {
         public int value;
         public Node left;
         public Node right;
+
+        // 这个给返回后继节点的题目使用
+        public Node parent;
 
         public Node(int v) {
             value = v;
@@ -84,11 +89,12 @@ public class Demo4_BT_01 {
                 level++;
             }
         }
-        ///!!!!!!
+        ///!!!!!! 这步不要忘记，循环执行完时还没有比较最大值
         maxWidth = Math.max(maxWidth, curWidth);
         return maxWidth;
     }
 
+    // 借助两个节点，分别是当前层的最右，下一层的最右
     public static int maxWidthNoMap(Node head) {
         if (head == null) {
             return 0;
@@ -119,6 +125,53 @@ public class Demo4_BT_01 {
         return maxWidth;
     }
 
+    // 给你二叉树中的某个节点，返回该节点的后继节点 （后继节点是中序便利的后一个）
+    public static Node getSuccessorNode(Node node) {
+        if (node == null) {
+            return null;
+        }
+        // 右子树不为空，则右子树的最左节点即为后继节点
+        if (node.right != null) {
+            return mostLeft(node.right);
+        }else{
+            // 此时 node 右子树为空，只能向上寻找
+            Node parent = node.parent;
+            // 不停寻找，直到找到 一个相对 parent 的左侧节点
+            while (parent != null && parent.right == node) {
+                node = parent;
+                parent = node.parent;
+            }
+            // 此时 parent 在 node 右上方（即为后继节点），或者 parent 为空
+            return parent;
+        }
+    }
+
+    private static Node mostLeft(Node right) {
+        if (right == null) {
+            return null;
+        }
+        while (right != null) {
+            right = right.left;
+        }
+        return null;
+    }
+
+    // 折纸凹凸问题
+    // 想像成二叉树问题，中序遍历
+    public static void  printAllFolds(int N) {
+        // 第一个节点，总共有 N 层，打印左节点
+        printProcess(1, N, true);
+    }
+
+    private static void printProcess(int i, int n, boolean down) {
+        if (i > n) {
+            return;
+        }
+        printProcess(i + 1, n, true);
+        System.out.print(down ? "凹 " : "凸 ");
+        printProcess(i + 1, n, false);
+    }
+
     // for test
     public static Node generateRandomBST(int maxLevel, int maxValue) {
         return generate(1, maxLevel, maxValue);
@@ -136,6 +189,11 @@ public class Demo4_BT_01 {
     }
 
     public static void main(String[] args) {
+        printAllFolds(4);
+        testMaxWidth();
+    }
+
+    private static void testMaxWidth() {
         int maxLevel = 10;
         int maxValue = 100;
         int testTimes = 1000000;
@@ -146,7 +204,6 @@ public class Demo4_BT_01 {
             }
         }
         System.out.println("finish!");
-
     }
 
 }
