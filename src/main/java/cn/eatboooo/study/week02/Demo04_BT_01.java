@@ -17,12 +17,13 @@ import java.util.Queue;
  * @author weiZhiLin
  * @date 2021/7/16 10:32
  * @version 1.0
+ *
  * 按层打印二叉树
  * 二叉树最大宽度
  * 给你二叉树中的某个节点，返回该节点的后继节点 （后继节点是中序便利的后一个）
  * 折纸凹凸问题
  */
-public class Demo4_BT_01 {
+public class Demo04_BT_01 {
     public static class Node {
         public int value;
         public Node left;
