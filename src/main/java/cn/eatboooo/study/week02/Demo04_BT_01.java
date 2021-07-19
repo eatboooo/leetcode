@@ -22,6 +22,8 @@ import java.util.Queue;
  * 二叉树最大宽度
  * 给你二叉树中的某个节点，返回该节点的后继节点 （后继节点是中序便利的后一个）
  * 折纸凹凸问题
+ * BST 二叉查找树二叉查找树 (Binary Search Tree)
+ * CBT 完全二叉树 (Complete Binary Tree)
  */
 public class Demo04_BT_01 {
     public static class Node {
