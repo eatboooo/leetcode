@@ -10,6 +10,8 @@ package cn.eatboooo.study.week04;
  * 规定玩家A先拿，玩家B后拿，
  * 但是每个玩家每次只能拿走最左或最右的纸牌，
  * 玩家A和玩家B都绝顶聪明。请返回最后获胜者的分数。
+ *
+ * 范围上的尝试模型
  */
 public class Demo07_Try_Card {
     public static int win1(int[] arr) {
