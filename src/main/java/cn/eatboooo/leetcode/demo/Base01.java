@@ -57,4 +57,16 @@ public class Base01 {
         }
         System.out.println();
     }
+    // 打印数组
+    public static void printDoubleArr(int[][] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            int[] ints = arr[i];
+            for (int j = 0; j < ints.length; j++) {
+                int anInt = ints[j];
+                System.out.print(anInt + " ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
 }
