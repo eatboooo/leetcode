@@ -40,13 +40,34 @@ public class Demo10_Try_BobDie {
         return up + dowm + left + right;
     }
 
-    private static long dp(int row, int col, int k, int n, int m) {
+    private static double dp(int row, int col, int k, int n, int m) {
         // [x][y][k]
-        int[][][] dp = new int[n][m][k];
-        dp[]
-
+        long[][][] dp = new long[n][m][k+1];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                dp[i][j][0] = 1;
+            }
+        }
+        for (int rest = 1; rest <= k; rest++) {
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < m; j++) {
+                    long right = pick(dp, i + 1, j, rest - 1, n, m, k);
+                    long left = pick(dp, i - 1, j, rest - 1, n, m, k);
+                    long up = pick(dp, i, j + 1, rest - 1, n, m, k);
+                    long down = pick(dp, i, j - 1, rest - 1, n, m, k);
+                    dp[i][j][rest] = up + down + left + right;
+                }
+            }
+        }
+        return  (double) dp[row][col][k] / Math.pow(4, k);
     }
 
+    private static long pick(long[][][] arr, int x, int y, int z, int n, int m, int k) {
+        if (x < 0 || x >= n || y < 0 || y >= m || z < 0 || z >= k) {
+            return 0;
+        }
+        return arr[x][y][z];
+    }
 
 
     public static void main(String[] args) {
