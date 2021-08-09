@@ -18,21 +18,17 @@ public class Demo11_Try_MinCoinsNoLimit {
             return Integer.MAX_VALUE;
         }
 
-
-        int process = process(arr, 0, aim);
+        int process = process2(arr, 0, aim);
         return process == Integer.MAX_VALUE ? process : process ;
     }
 
 
-    // todo dp 版本
+    // 多一次遍历的尝试
     private static int process(int[] arr, int index, int rest) {
         if (rest == 0) {
             return 0;
         }
-        if (rest < 0) {
-            return Integer.MAX_VALUE;
-        }
-        if (index == arr.length) {
+        if (rest < 0 || index == arr.length) {
             return Integer.MAX_VALUE;
         }
         int ways = Integer.MAX_VALUE;
@@ -47,28 +43,64 @@ public class Demo11_Try_MinCoinsNoLimit {
         return ways;
     }
 
-    // todo 研究一下
+    // my 不需要空间压缩的尝试
     private static int process2(int[] arr, int index, int rest) {
         if (rest == 0) {
             return 0;
         }
-        if (rest < 0) {
+        if (rest < 0 || index == arr.length) {
             return Integer.MAX_VALUE;
         }
-        if (index == arr.length) {
-            return Integer.MAX_VALUE;
+        // use
+        int p1 = Integer.MAX_VALUE;
+        // 检查有没有必要用
+        if (rest - arr[index] >= 0) {
+            // 有必要
+            int next = process(arr, index, rest - arr[index]);
+            // 看看返回的结果能不能成，不是 maxValue 就可以
+            p1 = next == Integer.MAX_VALUE ? next : 1 + next;
         }
-        int p1 = process(arr, index, rest - arr[index]);
+
+        // no use
         int p2 = process(arr, index + 1, rest);
-        if (p1 != Integer.MAX_VALUE || p2 != Integer.MAX_VALUE) {
-            return Math.min(p1, p2) + 1;
-        }
-        return Integer.MAX_VALUE;
+
+        return Math.min(p1, p2);
     }
+
+    // 根据上面改出来的动态规划
+    public static int dp2(int[] arr, int aim){
+        if (aim == 0) {
+            return 0;
+        }
+        if (arr.length == 0) {
+            return Integer.MAX_VALUE;
+        }
+        // [index][rest]
+        int[][] dp = new int[arr.length + 1][aim + 1];
+        for (int i = 1; i < aim + 1; i++) {
+            dp[arr.length][i] = Integer.MAX_VALUE;
+        }
+        for (int i = arr.length-1; i >= 0; i--) {
+            for (int rest = 1; rest < aim + 1; rest++) {
+                int p1 = Integer.MAX_VALUE;
+                if (rest - arr[i] >= 0) {
+                    // 有必要
+                    int next = dp[i][rest - arr[i]];
+                    // 看看返回的结果能不能成，不是 maxValue 就可以
+                    p1 = next == Integer.MAX_VALUE ? next : 1 + next;
+                }
+                int p2 = dp[i + 1][rest];
+                dp[i][rest] = Math.min(p1, p2);
+            }
+        }
+        int process = dp[0][aim];
+        return process == Integer.MAX_VALUE ? process : process ;
+    }
+
 
     // copy for test
 
-    public static int dp2(int[] arr, int aim) {
+    public static int dp(int[] arr, int aim) {
         if (aim == 0) {
             return 0;
         }

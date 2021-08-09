@@ -22,7 +22,6 @@ public class Demo11_Try_SplitNumber {
         return process(1, n);
     }
 
-    // todo dp 方法
     private static int process(int pre, int rest) {
         if (rest == 0) {
             return 1;
@@ -37,6 +36,31 @@ public class Demo11_Try_SplitNumber {
         return ways;
     }
 
+    // 没有斜率优化的 dp
+    // todo 空间压缩
+    private static int dp(int n) {
+        if (n < 1) {
+            return 0;
+        }
+        if (n == 1) {
+            return 1;
+        }
+        // [pre][rest]
+        int[][] dp = new int[n + 1][n + 1];
+        for (int i = 0; i < n + 1; i++) {
+            dp[i][0] = 1;
+        }
+        for (int rest = 1; rest < n + 1; rest++) {
+            for (int pre = 0; pre < n + 1; pre++) {
+                int ways = 0;
+                for (int i = pre; i <= rest; i++) {
+                    ways += dp[i][rest - i];
+                }
+                dp[pre][rest] = ways;
+            }
+        }
+        return dp[1][n];
+    }
 
     // copy for test
     public static int dp1(int n) {
@@ -89,5 +113,6 @@ public class Demo11_Try_SplitNumber {
         System.out.println(split(test));
         System.out.println(dp1(test));
         System.out.println(dp2(test));
+        System.out.println(dp(test));
     }
 }

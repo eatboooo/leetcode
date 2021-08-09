@@ -26,7 +26,7 @@ public class Demo12_Try_SplitSumClosedSizeHalf {
         }
 
         // max 不是 min,要选择最接近平均数的值
-        return Math.min(process(arr, 0, arr.length / 2, sum / 2), process(arr, 0, arr.length / 2 + 1, sum / 2));
+        return Math.max(process(arr, 0, arr.length / 2, sum / 2), process(arr, 0, arr.length / 2 + 1, sum / 2));
     }
 
     private static int process(int[] arr, int index, int num, int rest) {
@@ -47,8 +47,43 @@ public class Demo12_Try_SplitSumClosedSizeHalf {
         return Math.max(p1, p2);
     }
 
-    // todo dp
-
+    // my dp
+    public static int dp(int[] arr) {
+        if (arr.length < 2) {
+            return 0;
+        }
+        int sum = 0;
+        for (int i : arr) {
+            sum += i;
+        }
+        //[index][num][rest]
+        int[][][] dp = new int[arr.length + 1][(arr.length / 2) + 2][(sum / 2) + 1];
+        for (int num = 1; num < (arr.length / 2) + 2; num++) {
+            for (int rest = 0; rest < (sum / 2) + 1; rest++) {
+                dp[arr.length][num][rest] = -1;
+            }
+        }
+        for (int i = arr.length - 1; i >= 0; i--) {
+            for (int num = 1; num < (arr.length / 2) + 2; num++) {
+                for (int rest = 0; rest < (sum / 2) + 1; rest++) {
+                    int p1 = -1;
+                    if (rest >= arr[i]) {
+                        p1 = dp[i + 1][num - 1][rest - arr[i]];
+                    }
+                    if (p1 != -1) {
+                        p1 += arr[i];
+                    }
+                    // no use
+                    int p2 = dp[i + 1][num][rest];
+                    dp[i][num][rest] = Math.max(p1, p2);
+                }
+            }
+        }
+        if (arr.length % 2 == 0) {
+            return dp[0][arr.length / 2][sum / 2];
+        }
+        return Math.max(dp[0][arr.length / 2][sum / 2], dp[0][(arr.length / 2) + 1][sum / 2]);
+    }
 
 
     // copy for test
@@ -121,7 +156,8 @@ public class Demo12_Try_SplitSumClosedSizeHalf {
             int[] arr = randomArray(len, maxValue);
 //            int ans1 = right(arr);
             int ans2 = minSum(arr);
-            int ans3 = dp2(arr);
+            int ans3 = dp(arr);
+//            int ans3 = dp2(arr);
             if (ans3 != ans2) {
 //            if (ans1 != ans2 || ans1 != ans3) {
                 printArray(arr);

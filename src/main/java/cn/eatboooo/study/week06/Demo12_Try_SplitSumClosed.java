@@ -37,12 +37,36 @@ public class Demo12_Try_SplitSumClosed {
         return Math.max(p1, p2);
     }
 
-    // todo dp
-
+    // my dp
+    public static int dp(int[] arr) {
+        if (arr.length < 2) {
+            return 0;
+        }
+        int sum = 0;
+        for (int i : arr) {
+            sum += i;
+        }
+        // [rest][index]
+        int[][] dp = new int[(sum / 2) + 1][arr.length + 1];
+        for (int rest = 0; rest < (sum / 2) + 1; rest++) {
+            for (int i = arr.length-1; i >= 0; i--) {
+                int p1 = -1;
+                // use
+                if (rest - arr[i] >= 0) {
+                    // 记住要相加
+                    p1 = arr[i] + dp[rest - arr[i]][i + 1];
+                }
+                // no use
+                int p2 = dp[rest][i + 1];
+                dp[rest][i] = Math.max(p1, p2);
+            }
+        }
+        return dp[sum / 2][0];
+    }
 
 
     // copy for test
-    public static int dp(int[] arr) {
+    public static int dp1(int[] arr) {
         if (arr == null || arr.length < 2) {
             return 0;
         }
