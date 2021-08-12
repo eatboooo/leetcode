@@ -146,6 +146,30 @@ public class WorkTest01 {
         document.toString();
         System.out.println(document.toString());
     }
-
-
+    @Test
+    void test06() {
+        StringBuilder stringBuilder = new StringBuilder(null);
+        System.out.println("stringBuilder = " + stringBuilder);
+    }
+    @Test
+    void test07() {
+        Integer i1 = 128;
+        Integer i2 = 128;
+        System.out.println(i1 == i2);
+    }
+    @Test
+    void test08() {
+        String str = new String("abcdd");
+        String str2 = new String("abcdd");
+        Object o = new Object();
+        Object o1 = new Integer(123);
+        Object o2 = new Integer(123);
+        System.out.println(str == str2);
+        System.out.println(str.hashCode());
+        System.out.println(str2.hashCode());
+        System.out.println("integer");
+        System.out.println(o1 == o2);
+        System.out.println(o1.hashCode());
+        System.out.println(o2.hashCode());
+    }
 }

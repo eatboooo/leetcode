@@ -136,7 +136,7 @@ public class Demo04_BT_01 {
         // 右子树不为空，则右子树的最左节点即为后继节点
         if (node.right != null) {
             return mostLeft(node.right);
-        }else{
+        } else {
             // 此时 node 右子树为空，只能向上寻找
             Node parent = node.parent;
             // 不停寻找，直到找到 一个相对 parent 的左侧节点
@@ -161,7 +161,7 @@ public class Demo04_BT_01 {
 
     // 折纸凹凸问题
     // 想像成二叉树问题，中序遍历
-    public static void  printAllFolds(int N) {
+    public static void printAllFolds(int N) {
         // 第一个节点，总共有 N 层，打印左节点
         printProcess(1, N, true);
     }
@@ -194,6 +194,7 @@ public class Demo04_BT_01 {
     public static void main(String[] args) {
         printAllFolds(4);
         testMaxWidth();
+//        testLevel();
     }
 
     private static void testMaxWidth() {
@@ -202,11 +203,27 @@ public class Demo04_BT_01 {
         int testTimes = 1000000;
         for (int i = 0; i < testTimes; i++) {
             Node head = generateRandomBST(maxLevel, maxValue);
-            if (maxWidthUseMap(head) != maxWidthNoMap(head)) {
+            int i1 = maxWidthUseMap(head);
+            int i2 = maxWidthNoMap(head);
+            if (i1 != i2) {
                 System.out.println("Oops!");
+                System.out.println("i1 = " + i1);
+                System.out.println("i2 = " + i2);
             }
         }
         System.out.println("finish!");
+    }
+
+    public static void testLevel() {
+        Node head = new Node(1);
+        head.left = new Node(2);
+        head.right = new Node(3);
+        head.left.left = new Node(4);
+        head.left.right = new Node(5);
+        head.right.left = new Node(6);
+        head.right.right = new Node(7);
+        level(head);
+        System.out.println("========");
     }
 
 }
