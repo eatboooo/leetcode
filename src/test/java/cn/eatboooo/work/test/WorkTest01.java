@@ -172,4 +172,29 @@ public class WorkTest01 {
         System.out.println(o1.hashCode());
         System.out.println(o2.hashCode());
     }
+
+    // 扔瓶子
+    @Test
+    void test09(){
+        System.out.println(drop(2, 100));
+    }
+
+
+    public static int drop(int bottles, int floors)
+    {
+        int fall = 1;
+        while (calcF(bottles, fall) < floors + 1) fall++;
+        return fall;
+    }
+    /**
+     * @Description:
+     * @Param: [瓶子个数, 扔的次数]
+     * @return: int
+     * @Author: weiZhiLin
+     * @Date: 2020/8/20 18:24
+     */
+    private static int calcF(int bottles, int fall) {
+        if (fall == 1 || bottles == 1) return fall + 1;
+        return calcF(bottles - 1, fall - 1) + calcF(bottles, fall - 1);
+    }
 }
