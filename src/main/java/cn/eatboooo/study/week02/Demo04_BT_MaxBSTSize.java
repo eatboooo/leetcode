@@ -20,7 +20,7 @@ public class Demo04_BT_MaxBSTSize {
         }
     }
 
-    public static class Info{
+    public static class Info {
         public int max;
         public int min;
         public int allSize;
@@ -33,8 +33,9 @@ public class Demo04_BT_MaxBSTSize {
             this.maxBst = maxBst;
         }
     }
+
     public static int maxSubBSTSize2(Node head) {
-        if(head == null) {
+        if (head == null) {
             return 0;
         }
         return process(head).maxBst;
@@ -67,9 +68,9 @@ public class Demo04_BT_MaxBSTSize {
         boolean lBST = left == null ? true : (left.maxBst == left.allSize);
         boolean rBST = right == null ? true : (right.maxBst == right.allSize);
         if (lBST && rBST) {
-            // 搜索儿茶素和 没有键值相等的节点！
-            boolean lMaxLessMin =left == null ? true : left.max < head.value;
-            boolean rMinGreatMax =right == null ? true : right.min > head.value;
+            // 搜索二叉树和 没有键值相等的节点！
+            boolean lMaxLessMin = left == null ? true : left.max < head.value;
+            boolean rMinGreatMax = right == null ? true : right.min > head.value;
             if (lMaxLessMin & rMinGreatMax) {
                 int lSize = left == null ? 0 : left.allSize;
                 int rSize = right == null ? 0 : right.allSize;
@@ -79,7 +80,45 @@ public class Demo04_BT_MaxBSTSize {
         return new Info(max, min, allSize, Math.max(cMax, Math.max(rMax, lMax)));
     }
 
+    // 后面写的新方法
+    private static Info process2(Node head) {
+        if (head == null) {
+            return null;
+        }
+        Info left = process2(head.left);
+        Info right = process2(head.right);
+        boolean lisBST = left == null ? true : (left.allSize == left.maxBst);
+        boolean risBST = right == null ? true : (right.allSize == right.maxBst);
+        int cAllS = 1;
+        int cMaxB = 1;
+        int cMax = head.value;
+        int cMin = head.value;
+        int lMax = Integer.MIN_VALUE;
+        int rMin = Integer.MAX_VALUE;
+        int rMaxB = 0;
+        int lMaxB = 0;
+        if (left != null) {
+            lMaxB = left.maxBst;
+            lMax = left.max;
+            cAllS += left.allSize;
+            cMax = Math.max(cMax, left.max);
+            cMin = Math.min(cMin, left.min);
+        }
+        if (right != null) {
+            rMaxB = right.maxBst;
+            rMin = right.min;
+            cAllS += right.allSize;
+            cMax = Math.max(cMax, right.max);
+            cMin = Math.min(cMin, right.min);
+        }
+        if (lisBST && risBST) {
+            if (head.value > lMax && head.value < rMin) {
+                cMaxB = cAllS;
+            }
+        }
 
+        return new Info(cMax, cMin, cAllS, Math.max(cMaxB, Math.max(lMaxB, rMaxB)));
+    }
 
     public static int getBSTSize(Node head) {
         if (head == null) {
@@ -114,6 +153,7 @@ public class Demo04_BT_MaxBSTSize {
         }
         return Math.max(maxSubBSTSize1(head.left), maxSubBSTSize1(head.right));
     }
+
     // for test
     public static Node generateRandomBST(int maxLevel, int maxValue) {
         return generate(1, maxLevel, maxValue);
