@@ -68,6 +68,43 @@ public class Demo05_BT_MaxHappy {
         return Math.max(p1, p2);
     }
 
+    // -------------复习写的-------------------------
+    // 效率比 maxHappy1 高
+    public static int maxHappy3(Employee boss) {
+        if (boss == null) {
+            return 0;
+        }
+        return Math.max(process01(boss).happyWithMe, process01(boss).happyWithoutMe);
+    }
+
+    private static Info2 process01(Employee boss) {
+        if (boss == null) {
+            return new Info2(0, 0);
+        }
+        List<Employee> nexts = boss.nexts;
+        int come = boss.happy;
+        int no = 0;
+        for (Employee next : nexts) {
+            Info2 info2 = process01(next);
+            // come
+            come += info2.happyWithoutMe;
+            // no
+            no += Math.max(info2.happyWithMe, info2.happyWithoutMe);
+        }
+        return new Info2(come, no);
+    }
+
+    public static class Info2 {
+        int happyWithMe;
+        int happyWithoutMe;
+
+        public Info2(int happyWithMe, int happyWithoutMe) {
+            this.happyWithMe = happyWithMe;
+            this.happyWithoutMe = happyWithoutMe;
+        }
+    }
+    //-----------------over--------------------------------
+
     public static int maxHappy2(Employee boss) {
         if (boss == null) {
             return 0;
@@ -120,13 +157,16 @@ public class Demo05_BT_MaxHappy {
         int maxNexts = 7;
         int maxHappy = 100;
         int testTimes = 100000;
+        long l = System.currentTimeMillis();
         for (int i = 0; i < testTimes; i++) {
             Employee boss = genarateBoss(maxLevel, maxNexts, maxHappy);
             if (maxHappy1(boss) != maxHappy2(boss)) {
                 System.out.println("Oops!");
             }
         }
+        l -= System.currentTimeMillis();
         System.out.println("finish!");
+        System.out.println("l = " + l);
     }
 
 }

@@ -80,6 +80,47 @@ public class Demo05_BT_MaxSubBSTHead {
         return new Info(maxSize, min, max, maxBSTHead);
     }
 
+    // -----------------------------复习写的---------------------------------------
+
+    /*private static Info process02(Node head) {
+        if (head == null) {
+            return null;
+        }
+        Info left = process02(head.left);
+        Info right = process02(head.right);
+        boolean lisBST = left == null ? true : (head.left == left.maxHead);
+        boolean risBST = right == null ? true : (head.right == right.maxHead);
+        int cMax = head.value;
+        int cMin = head.value;
+        int lMax = Integer.MIN_VALUE;
+        int rMin = Integer.MAX_VALUE;
+        int lSize = 0;
+        int rSize = 0;
+        int cSize = 1;
+        Node cMaxHead = head;
+        if (left != null) {
+            lMax = left.max;
+            cMax = Math.max(left.max, cMax);
+            cMin = Math.min(left.min, cMin);
+            lSize = left.size;
+        }
+        if (right != null) {
+            rMin = right.min;
+            cMax = Math.max(right.max, cMax);
+            cMin = Math.min(right.min, cMin);
+            rSize = right.size;
+        }
+        boolean cisBST = lisBST && risBST && lMax < head.value && head.value < rMin;
+        if (lisBST && risBST && cisBST) {
+            cMaxHead = head;
+            cSize += lSize + rSize;
+        }else if (rSize != 0 || lSize != 0) {
+            cMaxHead = rSize > lSize ? right.maxHead : left.maxHead;
+        }
+
+        return new Info(cMin, cMax, Math.max(cSize, Math.max(lSize, rSize)), cMaxHead);
+    }*/
+    //------------------------------ouver-----------------------------------------
 
     // copy for test
     public static int getBSTSize(Node head) {
