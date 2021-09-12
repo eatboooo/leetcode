@@ -54,17 +54,22 @@ public class Demo01 {
     public static ListNode myLink02Remove(ListNode head, int num) {
 
         // head 来到第一个不需要删除的位置
+        while (head.next != null) {
+            if (head.next.val != null) {
+                break;
+            }
+            head = head.next;
+        }
         ListNode pre = head;
         ListNode cur = head.next;
 
         while (cur != null) {
-            if (cur.val == null) {
+            if (cur.val == num) {
                 pre.next = cur.next;
             } else {
-                // todo
                 pre = cur;
-                cur = cur.next;
             }
+            cur = cur.next;
         }
         return head;
     }
