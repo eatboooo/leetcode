@@ -133,6 +133,23 @@ public class Demo07_Try_Card {
         return Math.max(fmap[0][N - 1], smap[0][N - 1]);
     }
 
+    // 动态规划 v2 温故知新
+    public static int win4(int[] arr) {
+        int N = arr.length;
+        int[][] fdp = new int[N][N];
+        int[][] sdp = new int[N][N];
+        for (int i = 0; i < N; i++) {
+            fdp[i][i] = arr[i];
+            sdp[i][i] = 0;
+        }
+        for (int end = 1; end < N; end++) {
+            for (int start = end - 1; start >= 0; start--) {
+                fdp[start][end] = Math.max(sdp[start + 1][end] + arr[start], sdp[start][end - 1] + arr[end]);
+                sdp[start][end] = Math.min(fdp[start + 1][end], fdp[start][end - 1]);
+            }
+        }
+        return Math.max(fdp[0][N - 1], sdp[0][N - 1]);
+    }
     // test
     public static void main(String[] args) {
         int[] arr = {5, 7, 4, 5, 8, 1, 6, 0, 3, 4, 6, 1, 7};
