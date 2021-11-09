@@ -1,5 +1,7 @@
 package cn.eatboooo.work.test;
 
+import cn.hutool.core.lang.Snowflake;
+import cn.hutool.core.util.IdUtil;
 import org.junit.jupiter.api.Test;
 
 import java.io.BufferedReader;
@@ -42,6 +44,34 @@ public class WorkTest03 {
         String sql = br.readLine();
         for (Long aLong : iList) {
             System.out.println(sql.replace("?oid?", String.valueOf(aLong)).replace("?qid?", qid));
+        }
+    }
+
+    // 使用雪花算法生成
+    @Test
+    void testBuffer2() throws IOException {
+        String file = "SQLcn";
+        String[] qids = new String[]{"1190959669279981569", "1190959669279981570"};
+        for (String qid : qids) {
+            BufferedReader optionBr = new BufferedReader(new InputStreamReader(new FileInputStream("src/main/resources/insert" + file)));
+            BufferedReader questionBr = new BufferedReader(new InputStreamReader(new FileInputStream("src/main/resources/" + file)));
+            Snowflake snowflake = IdUtil.getSnowflake();
+            String data = null;
+            List<String> iList = new ArrayList<>();
+            while ((data = optionBr.readLine()) != null) {
+                String id = String.valueOf(snowflake.nextId());
+                iList.add(id);
+                System.out.println(data.replace("???", id));
+            }
+            System.out.println("\n\n\n\n\n\n");
+            String sql = questionBr.readLine();
+            for (String oid : iList) {
+                System.out.println(sql.replace("?oid?", oid).replace("?qid?", qid));
+            }
+            System.out.println("\n\n\n\n\n\n");
+
+            optionBr.close();
+            questionBr.close();
         }
     }
 }
