@@ -29,7 +29,7 @@ public class WorkTest03 {
         String file = "SQLcn";
 //        String qid = "1190959669279981569";
         String qid = "1190959669279981570";
-        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("/Users/eatboooo/Documents/parctise/java/leetcode/src/main/resources/insert" + file)));
+        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("/Users/myDev/gitCode/leetcode/src/main/resources/insert" + file)));
         String data = null;
         StringBuilder sb = new StringBuilder();
 //        long i = 1227884772458641180L;
@@ -41,7 +41,7 @@ public class WorkTest03 {
             System.out.println(data.replace("???", String.valueOf(i++)));
         }
         System.out.println("\n\n\n\n\n\n");
-        br = new BufferedReader(new InputStreamReader(new FileInputStream("/Users/eatboooo/Documents/parctise/java/leetcode/src/main/resources/" + file)));
+        br = new BufferedReader(new InputStreamReader(new FileInputStream("/Users/myDev/gitCode/leetcode/src/main/resources/" + file)));
         String sql = br.readLine();
         for (Long aLong : iList) {
             System.out.println(sql.replace("?oid?", String.valueOf(aLong)).replace("?qid?", qid));
@@ -51,6 +51,7 @@ public class WorkTest03 {
     // 使用雪花算法生成
     @Test
     void testBuffer2() throws IOException {
+//        String file = "SQLcn";
         String file = "SQLen";
         String[] qids = new String[]{"1190959669279981569", "1190959669279981570"};
         List<List<String>> varchar = findVarcharEn();
