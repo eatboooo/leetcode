@@ -79,9 +79,9 @@ public class WorkTest03 {
             String t = null;
             for (String oid : iList) {
                 t = varchar.get(0).get(index);
-                System.out.println(translateSQL.replace("?oid?", oid).replace("?t?", t).replace("?lan?", "zh_CN"));
+                System.out.println(translateSQL.replace("?oid?", oid).replace("?t?", t.replace("'","")).replace("?lan?", "zh_CN"));
                 t = varchar.get(1).get(index++);
-                System.out.println(translateSQL.replace("?oid?", oid).replace("?t?", t).replace("?lan?", "en_US"));
+                System.out.println(translateSQL.replace("?oid?", oid).replace("?t?", t.replace("'","")).replace("?lan?", "en_US"));
             }
             System.out.println("\n\n\n\n\n\n");
             optionBr.close();
@@ -125,7 +125,7 @@ public class WorkTest03 {
             if (end == -1) {
                 break;
             }
-            String varchar = data.substring(186, end + 6);
+            String varchar = data.substring(185, end + 6);
             tList.add(varchar);
             iList.add(varchar.replace("inches", "英寸"));
         }
