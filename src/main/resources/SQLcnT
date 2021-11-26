@@ -1,1 +1,0 @@
-INSERT INTO `cfda_evaluation`.`option_lang_pack` (`option_id`, `description`, `locale`, `text`, `current`) VALUES (?oid?, NULL, '?lan?', '?t?', 1);

@@ -1,1 +1,0 @@
-INSERT INTO `rplus_evaluation`.`question_option`(`question_id`, `calculation_logic`, `condition_logic`, `create_time`, `next_question_id`, `option_id`, `option_order`, `priority`, `update_time`) VALUES (?qid?, NULL, NULL, '2021-11-09 12:01:25', NULL, ?oid?, NULL, 0, '2021-11-09 12:01:25');
