@@ -10,19 +10,18 @@ import cn.eatboooo.leetcode.demo.Base01;
 
 /**
  * Demo10_Try_MinPathSum
- * @description
- * @author weiZhiLin
- * @date 2021/8/3 18:22
- * @version 1.0
  *
+ * @author weiZhiLin
+ * @version 1.0
+ * <p>
  * 最短路径
  * 从（0,0）走到（N-1，N-1）
  * 从 42 走到 60
- *     ----------> y
- *     ↓  42 87 98
- *     ↓  2 53 27
- *     ↓  94 31 60
- *     x
+ * ----------> y
+ * ↓  42 87 98
+ * ↓  2 53 27
+ * ↓  94 31 60
+ * x
  */
 public class Demo10_Try_MinPathSum {
     public static int minPathSum(int[][] arr) {
@@ -44,6 +43,25 @@ public class Demo10_Try_MinPathSum {
         return dp[0][0];
     }
 
+    public static int minPathSum3(int[][] arr) {
+        return process3(arr, 0, 0);
+    }
+
+    private static int process3(int[][] arr, int x, int y) {
+        if (x == arr.length || y == arr[0].length) {
+            return Integer.MAX_VALUE;
+        }
+        if (x == arr.length - 1 && y == arr[0].length - 1) {
+            return arr[x][y];
+        }
+
+        int v = arr[x][y];
+        // left
+        int left = process3(arr, x + 1, y);
+        // right
+        int right = process3(arr, x, y + 1);
+        return Math.min(left, right) + v;
+    }
 
 
     // copy for test
@@ -66,6 +84,7 @@ public class Demo10_Try_MinPathSum {
         }
         return dp[col - 1];
     }
+
     // for test
     public static int[][] generateRandomMatrix(int rowSize, int colSize) {
         if (rowSize < 0 || colSize < 0) {
@@ -79,6 +98,7 @@ public class Demo10_Try_MinPathSum {
         }
         return result;
     }
+
     // for test
     public static void printMatrix(int[][] matrix) {
         for (int i = 0; i != matrix.length; i++) {
@@ -88,12 +108,13 @@ public class Demo10_Try_MinPathSum {
             System.out.println();
         }
     }
+
     public static void main(String[] args) {
         int rowSize = 3;
         int colSize = 3;
         int[][] m = generateRandomMatrix(rowSize, colSize);
         Base01.printDoubleArr(m);
-        System.out.println(minPathSum(m));
+        System.out.println(minPathSum3(m));
         System.out.println(minPathSum2(m));
 
     }
