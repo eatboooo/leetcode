@@ -7,16 +7,10 @@
 package cn.eatboooo.leetcode.demo;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
-import java.util.Stack;
-
 import cn.eatboooo.bean.ListNode;
 import cn.eatboooo.bean.TreeNode;
+
+import java.util.*;
 
 /**
  * Demo01
@@ -940,6 +934,7 @@ public class Demo01 {
     /**
      * https://leetcode-cn.com/problems/palindrome-linked-list/
      * 边界条件真的烦
+     *
      * @Description: 234. 回文链表
      * @Param: [head]
      * @return: boolean
@@ -1033,12 +1028,12 @@ public class Demo01 {
     }
 
     /**
-     *
      * Demo01
      * https://leetcode-cn.com/problems/plus-one/
-     * @description 66. 加一
+     *
      * @param digits
      * @return int[]
+     * @description 66. 加一
      * @date 2021/7/2 9:58
      * @author weiZhiLin
      * @version 1.0
@@ -1083,4 +1078,44 @@ public class Demo01 {
         }
         return arr;
     }*/
+
+
+    /**
+     * https://leetcode-cn.com/problems/longest-common-prefix/
+     *
+     * @Description: 14. 最长公共前缀
+     * @Param: [strs]
+     * @return: java.lang.String
+     * @Author: weiZhiLin
+     * @Date: 2021/12/18 17:20
+     */
+    public static String longestCommonPrefix(String[] strs) {
+        if (strs.length < 1) {
+            return "";
+        }
+        if (strs.length == 1) {
+            return strs[0];
+        }
+        int l = 0;
+        int check = 0;
+        char[] chars = strs[0].toCharArray();
+        for (int i = 0; i < chars.length; i++) {
+            char aChar = chars[i];
+            check = 0;
+            for (String str : strs) {
+                if (i > str.length() - 1) {
+                    break;
+                }
+                if (str.charAt(i) == aChar) {
+                    check++;
+                }
+            }
+            if (check == strs.length) {
+                l++;
+            } else {
+                break;
+            }
+        }
+        return strs[0].substring(0, l);
+    }
 }

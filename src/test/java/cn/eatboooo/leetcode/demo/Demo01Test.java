@@ -192,4 +192,12 @@ class Demo01Test {
         System.out.println((0 - 1) / 2);
         System.out.println((0 - 1) >> 1);
     }
+
+    @Test
+    void myTest06(){
+        String[] strs = new String[]{"f"};
+//        String[] strs = new String[]{"flower", "flow", "flight"};
+        String s = Demo01.longestCommonPrefix(strs);
+        System.out.println("s = " + s);
+    }
 }
