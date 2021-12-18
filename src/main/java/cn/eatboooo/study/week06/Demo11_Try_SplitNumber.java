@@ -4,7 +4,7 @@ package cn.eatboooo.study.week06;
  * @author weiZhiLin
  * @version 1.0
  * @date 2021/8/8 00:36
- *
+ * <p>
  * 给定一个正数n，求n的裂开方法数，
  * 规定：后面的数不能比前面的数小
  * 比如4的裂开方法有：
@@ -36,8 +36,52 @@ public class Demo11_Try_SplitNumber {
         return ways;
     }
 
+    // 不需要循环的尝试
+    private static int process2(int pre, int rest) {
+        if (rest == 0) {
+            return 1;
+        }
+        if (rest < 0) {
+            return 0;
+        }
+        // 使用 pre
+        int ways = process(pre, rest - pre);
+        // 不使用 pre
+        if (pre < rest) {
+            ways += process(pre + 1, rest);
+        }
+        return ways;
+    }
+
+    // process2 的动态规划版本
+    private static int myDp2(int n) {
+        if (n < 1) {
+            return 0;
+        }
+        if (n == 1) {
+            return 1;
+        }
+        int prel = n + 1;
+        int restl = n + 1;
+        int[][] dp = new int[prel][restl];
+        for (int i = 0; i < prel; i++) {
+            dp[i][0] = 1;
+        }
+        for (int pre = prel - 1; pre >= 0; pre--) {
+            for (int rest = 1; rest < restl; rest++) {
+                // 使用 pre
+                int ways = rest - pre < 0 ? 0 : dp[pre][rest - pre];
+                // 不使用 pre
+                if (pre < rest) {
+                    ways += dp[pre + 1][rest];
+                }
+                dp[pre][rest] = ways;
+            }
+        }
+        return dp[1][n];
+    }
+
     // 没有斜率优化的 dp
-    // todo 空间压缩
     private static int dp(int n) {
         if (n < 1) {
             return 0;
@@ -57,6 +101,36 @@ public class Demo11_Try_SplitNumber {
                     ways += dp[i][rest - i];
                 }
                 dp[pre][rest] = ways;
+            }
+        }
+//        for (int x = 0; x < dp.length; x++) {
+//            int[] ints = dp[x];
+//            for (int y = 0; y < ints.length; y++) {
+//                int anInt = ints[y];
+//                System.out.println(x + "," + y + ":= " + anInt);
+//            }
+//        }
+        return dp[1][n];
+    }
+
+    // 有斜率优化的 dp
+    // 终于搞好了 泪目
+    private static int smallDp(int n) {
+        if (n < 1) {
+            return 0;
+        }
+        if (n == 1) {
+            return 1;
+        }
+        //  dp[pre][rest]
+        int dp[][] = new int[n + 1][n + 1];
+        for (int i = 0; i < n + 1; i++) {
+            dp[i][0] = 1;
+        }
+        dp[n][n] = 1;
+        for (int rest = 1; rest < n + 1; rest++) {
+            for (int pre = rest; pre >= 0; pre--) {
+                dp[pre][rest] = pre + 1 > n ? 1 : dp[pre + 1][rest] + dp[pre][rest - pre];
             }
         }
         return dp[1][n];
@@ -109,10 +183,12 @@ public class Demo11_Try_SplitNumber {
     }
 
     public static void main(String[] args) {
-        int test = 39;
+        int test = 80;
         System.out.println(split(test));
         System.out.println(dp1(test));
         System.out.println(dp2(test));
         System.out.println(dp(test));
+        System.out.println(myDp2(test));
+        System.out.println(smallDp(test));
     }
 }
