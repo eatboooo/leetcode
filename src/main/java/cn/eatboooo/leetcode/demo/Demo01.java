@@ -1118,4 +1118,41 @@ public class Demo01 {
         }
         return strs[0].substring(0, l);
     }
+
+
+    /**
+     * https://leetcode-cn.com/problems/valid-parentheses/
+     *
+     * @Description: 20. 有效的括号
+     * @Param: [s]
+     * @return: boolean
+     * @Author: weiZhiLin
+     * @Date: 2021/12/18 17:42
+     */
+    public boolean isValid(String s) {
+        if (null == s || "" == s) {
+            return true;
+        }
+        if (s.length() % 2 != 0) {
+            return false;
+        }
+        char[] chars = s.toCharArray();
+        Stack<Character> stack = new Stack<>();
+        String l = "({[";
+        String r = ")}]";
+        for (char aChar : chars) {
+            if (l.indexOf(aChar) != -1) {
+                stack.push(aChar);
+            }else {
+                if (stack.size() == 0) {
+                    return false;
+                }
+                Character pop = stack.pop();
+                if (l.indexOf(pop) != r.indexOf(aChar)) {
+                    return false;
+                }
+            }
+        }
+        return stack.size() == 0;
+    }
 }
