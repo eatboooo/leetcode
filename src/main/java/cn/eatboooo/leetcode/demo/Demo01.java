@@ -1122,6 +1122,12 @@ public class Demo01 {
 
     /**
      * https://leetcode-cn.com/problems/valid-parentheses/
+     * <p>
+     * 聪明的解决
+     * while '{}' in s or '()' in s or '[]' in s:
+     * s = s.replace('{}', '')
+     * s = s.replace('[]', '')
+     * s = s.replace('()', '')
      *
      * @Description: 20. 有效的括号
      * @Param: [s]
@@ -1143,7 +1149,7 @@ public class Demo01 {
         for (char aChar : chars) {
             if (l.indexOf(aChar) != -1) {
                 stack.push(aChar);
-            }else {
+            } else {
                 if (stack.size() == 0) {
                     return false;
                 }
