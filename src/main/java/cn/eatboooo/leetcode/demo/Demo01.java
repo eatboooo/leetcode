@@ -1161,4 +1161,32 @@ public class Demo01 {
         }
         return stack.size() == 0;
     }
+
+    /**
+     * https://leetcode-cn.com/problems/sqrtx/
+     *
+     * @Description: 69. Sqrt(x)
+     * @Param: [x]
+     * @return: int
+     * @Author: weiZhiLin
+     * @Date: 2021/12/20 09:21
+     */
+    public static int mySqrt(int x) {
+        if (x == 0) {
+            return 0;
+        }
+        if (x < 4) {
+            return 1;
+        }
+        int result = 2;
+        for (long i = result; i < x; i++) {
+            if (i * i == x) {
+                return ((int) i);
+            }
+            if (i * i > x) {
+                return ((int) (i - 1));
+            }
+        }
+        return result;
+    }
 }
