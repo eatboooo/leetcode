@@ -27,8 +27,14 @@ public class Demo01 {
 
         // 用于获取二进制最右侧的 1 ，需要记住 xor & (~xor + 1)
         int xorT = xor & (~xor + 1);
-
-        return new int[]{1, 2};
+        int one = xor;
+        for (int i : arr) {
+            if ((i & xorT) == 0) {
+                // 这个判断可以把 A/B 筛掉
+                one ^= i;
+            }
+        }
+        return new int[]{one, xor ^ one};
     }
 
 
