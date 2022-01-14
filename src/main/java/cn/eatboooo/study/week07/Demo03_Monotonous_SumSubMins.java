@@ -29,29 +29,35 @@ public class Demo03_Monotonous_SumSubMins {
 
     private static int[] getLeft(int[] arr) {
         int[] ints = new int[arr.length];
-        Stack<Integer> stack = new Stack<>();
-        for (int i = 0; i < arr.length; i++) {
-            while (!stack.isEmpty() && arr[stack.peek()] >= arr[i]) {
-                stack.pop();
+        int[] stack = new int[arr.length];
+        int index = -1;
+        for (int i = arr.length - 1; i >= 0; i--) {
+            while (index != -1 && arr[stack[index]] >=arr[i]) {
+                int pop = stack[index--];
+                ints[pop] = i;
             }
-            ints[i] = stack.isEmpty() ? -1 : stack.peek();
-            stack.push(i);
+            stack[++index] = i;
+        }
+        while (index != -1) {
+            int pop = stack[index--];
+            ints[pop] = -1;
         }
         return ints;
     }
 
     private static int[] getRight(int[] arr) {
         int[] ints = new int[arr.length];
-        Stack<Integer> stack = new Stack<>();
+        int[] stack = new int[arr.length];
+        int index = -1;
         for (int i = 0; i < arr.length; i++) {
-            while (!stack.isEmpty() && arr[stack.peek()] >= arr[i]) {
-                Integer pop = stack.pop();
+            while (index != -1 && arr[stack[index]] > arr[i]) {
+                int pop = stack[index--];
                 ints[pop] = i;
             }
-            stack.push(i);
+            stack[++index] = i;
         }
-        while (!stack.isEmpty()) {
-            Integer pop = stack.pop();
+        while (index != -1) {
+            int pop = stack[index--];
             ints[pop] = arr.length;
         }
         return ints;
