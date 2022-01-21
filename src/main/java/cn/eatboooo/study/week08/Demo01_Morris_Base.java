@@ -29,6 +29,19 @@ public class Demo01_Morris_Base {
         public Node(int data) {
             this.value = data;
         }
+
+        @Override
+        public String toString() {
+            return String.valueOf(this.value);
+        }
+    }
+    public static void process(Node root) {
+        if (root == null) {
+            return;
+        }
+        process(root.left);
+        process(root.right);
+        System.out.print(root + " ");
     }
 
     public static void morris(Node head) {
@@ -43,17 +56,94 @@ public class Demo01_Morris_Base {
                 while (real.right != null && real.right != cur) {
                     real = real.right;
                 }
+                System.out.print(cur + " ");
                 if (real.right == null) {
                     real.right = cur;
                     cur = cur.left;
-                    continue;
-                }else {
+                } else {
                     real.right = null;
                     cur = cur.right;
-                    continue;
                 }
+                continue;
             }
+            System.out.print(cur + " ");
             cur = cur.right;
         }
+        System.out.println();
+    }
+    public static void preMorris(Node head) {
+        if (head == null) {
+            return;
+        }
+        Node cur = head;
+        Node real = null;
+        while (cur != null) {
+            real = cur.left;
+            if (real != null) {
+                while (real.right != null && real.right != cur) {
+                    real = real.right;
+                }
+                if (real.right == null) {
+                    System.out.print(cur + " ");
+                    real.right = cur;
+                    cur = cur.left;
+                } else {
+                    real.right = null;
+                    cur = cur.right;
+                }
+                continue;
+            }
+            System.out.print(cur + " ");
+            cur = cur.right;
+        }
+        System.out.println();
+    }
+
+    public static void midMorris(Node head) {
+        if (head == null) {
+            return;
+        }
+        Node cur = head;
+        Node real = null;
+        while (cur != null) {
+            real = cur.left;
+            if (real != null) {
+                while (real.right != null && real.right != cur) {
+                    real = real.right;
+                }
+                if (real.right == null) {
+                    real.right = cur;
+                    cur = cur.left;
+                } else {
+                    System.out.print(cur + " ");
+                    real.right = null;
+                    cur = cur.right;
+                }
+                continue;
+            }
+            System.out.print(cur + " ");
+            cur = cur.right;
+        }
+        System.out.println();
+    }
+
+    // test
+    public static void main(String[] args) {
+        System.out.println("Morris 遍历");
+        Node head = new Node(1);
+        head.left = new Node(2);
+        head.right = new Node(3);
+        head.left.left = new Node(4);
+        head.left.right = new Node(5);
+        head.right.left = new Node(6);
+        head.right.right = new Node(7);
+        head.left.right.left = new Node(8);
+        morris(head);
+        // preMorris(head);
+        System.out.println();
+        process(head);
+        System.out.println();
+        midMorris(head);
+
     }
 }
