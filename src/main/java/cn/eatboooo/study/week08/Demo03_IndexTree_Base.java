@@ -19,9 +19,16 @@ public class Demo03_IndexTree_Base {
     public static class IndexTree {
         int tree[];
 
-        public IndexTree(int[] origin) {
+        public IndexTree(int size) {
             // 下标从 1 开始，否则之后的位置不好算
-            tree = new int[origin.length + 1];
+            tree = new int[size + 1];
+        }
+
+        // 初始化
+        public void build(int[] origin) {
+            for (int i = 0; i < origin.length; i++) {
+                add(i + 1, origin[i]);
+            }
         }
 
         public void add(int index, int value) {
