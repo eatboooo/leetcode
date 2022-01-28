@@ -37,7 +37,7 @@ public class Demo01_Window_GasStation {
             int i2 = myGas[i % myGas.length];
             myGasPre[i] = i - 1 >= 0 ? i2 + myGasPre[i - 1] : i2;
         }
-        // 根据前缀累加和，使用滑动时间窗口判断有没有复数
+        // 根据前缀累加和，使用滑动时间窗口判断有没有负数
         // 窗口大小为 gas 数组大小
         LinkedList<Integer> windows = new LinkedList<>();
         int windowSize = myGasPre.length / 2;
@@ -71,11 +71,11 @@ public class Demo01_Window_GasStation {
 
     // test
     public static void main(String[] args) {
-        int[] a1 = {1,2,3,4,3,2,4,1,5,3,2,4};
-        int[] a2 = {1,1,1,3,2,4,3,6,7,4,3,1};
-        System.out.println("a1.length = " + a1.length);
-//        int[] a1 = {1, 5, 3};
-//        int[] a2 = {2, 3, 3};
+        // int[] a1 = {1,2,3,4,3,2,4,1,5,3,2,4};
+        // int[] a2 = {1,1,1,3,2,4,3,6,7,4,3,1};
+        // System.out.println("a1.length = " + a1.length);
+       int[] a1 = {1, 5, 3};
+       int[] a2 = {2, 3, 3};
         //[1,2,3,4,3,2,4,1,5,3,2,4]
         //[1,1,1,3,2,4,3,6,7,4,3,1]
         //  -1,2,0
