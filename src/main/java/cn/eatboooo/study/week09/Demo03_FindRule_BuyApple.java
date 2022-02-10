@@ -14,4 +14,63 @@ package cn.eatboooo.study.week09;
  * 且使用的每个袋子必须装满，给定一个正整数N，返回至少使用多少袋子。如果N无法让使用的每个袋子必须装满，返回-1
  */
 public class Demo03_FindRule_BuyApple {
+    public static int apple(int apple) {
+        if (apple == 0) {
+            return 0;
+        }
+        if (apple < 0) {
+            return Integer.MAX_VALUE;
+        }
+        int p1 = Integer.MAX_VALUE;
+        int p2 = Integer.MAX_VALUE;
+        // use 6
+        int apple1 = apple(apple - 6);
+        if (apple1 != Integer.MAX_VALUE) {
+            p1 = 1 + apple1;
+        }
+        // use 8
+        int apple2 = apple(apple - 8);
+        if (apple2 != Integer.MAX_VALUE) {
+            p2 = 1 + apple2;
+        }
+        return Math.min(p1, p2);
+    }
+
+    public static int appleRules(int apple) {
+        if (apple % 2 != 0) {
+            return -1;
+        }
+        if (apple < 12) {
+            switch (apple) {
+                case 0:
+                    return 0;
+                case 6:
+                case 8:
+                    return 1;
+                default:
+                    return -1;
+            }
+        }
+        if (apple % 8 != 0) {
+            return apple / 8 + 1;
+        } else {
+            return apple / 8;
+        }
+    }
+
+    public static void main(String[] args) {
+        for (int i = 0; i < 1000; i++) {
+            int apple = apple(i);
+            int appleRules = appleRules(i);
+            System.out.println(i + ": " + appleRules);
+            if (apple != Integer.MAX_VALUE) {
+                System.out.println(i + ": " + apple);
+                System.out.println(i + ": " + appleRules);
+                if (apple != appleRules) {
+                    System.out.println("!!!!");
+                    return;
+                }
+            }
+        }
+    }
 }
