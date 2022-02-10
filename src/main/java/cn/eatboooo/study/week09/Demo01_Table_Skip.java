@@ -104,6 +104,8 @@ public class Demo01_Table_Skip {
             } else { // find == null   8   7   9
                 size++;
                 int newNodeLevel = 0;
+
+                // 开始随机健层
                 while (Math.random() < PROBABILITY) {
                     newNodeLevel++;
                 }
@@ -116,12 +118,16 @@ public class Demo01_Table_Skip {
                 for (int i = 0; i <= newNodeLevel; i++) {
                     newNode.nextNodes.add(null);
                 }
+                // 空楼层建造完成
+
                 int level = maxLevel;
                 SkipListNode<K, V> pre = head;
+                // 开始从上往下检查并在楼层中插入新的值
                 while (level >= 0) {
                     // level 层中，找到最右的 < key 的节点
                     pre = mostRightLessNodeInLevel(key, pre, level);
                     if (level <= newNodeLevel) {
+                        // 插入节点
                         newNode.nextNodes.set(level, pre.nextNodes.get(level));
                         pre.nextNodes.set(level, newNode);
                     }
@@ -156,6 +162,7 @@ public class Demo01_Table_Skip {
                     }
                     // 在level层只有一个节点了，就是默认节点head
                     if (level != 0 && pre == head && pre.nextNodes.get(level) == null) {
+                        // 此时最高层发生了变化
                         head.nextNodes.remove(level);
                         maxLevel--;
                     }
@@ -182,6 +189,7 @@ public class Demo01_Table_Skip {
             return cur.key;
         }
 
+        // 第一个比 key 大的
         public K ceilingKey(K key) {
             if (key == null) {
                 return null;
@@ -191,6 +199,7 @@ public class Demo01_Table_Skip {
             return next != null ? next.key : null;
         }
 
+        // 第一个小于等于 key 的
         public K floorKey(K key) {
             if (key == null) {
                 return null;
