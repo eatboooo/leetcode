@@ -78,7 +78,7 @@ public class Demo06_Try_PostOffice {
         return dp[num][arr.length - 1];
     }
 
-    // 改四边形 todo
+    // 改四边形
     public static int min3(int[] arr, int num) {
         if (arr == null || num < 1 || arr.length < num) {
             return 0;
@@ -100,8 +100,10 @@ public class Demo06_Try_PostOffice {
             for (int index = arr.length-1; index >=0 ; index--) {
                 int ans = Integer.MAX_VALUE;
                 int chose = 0;
-                for (int i = dpIndex[n - 1][index]; i <= dpIndex[n - 1][index + 1]; i++) {
-                    if (ans < dp[n - 1][i] + w[i + 1][index]) {
+                int down = dpIndex[n - 1][index];
+                int up = index + 1 == arr.length ? arr.length - 1 : dpIndex[n][index + 1];
+                for (int i = down; i <= up; i++) {
+                    if (ans > dp[n - 1][i] + w[i + 1][index]) {
                         ans = dp[n - 1][i] + w[i + 1][index];
                         chose = i;
                     }
