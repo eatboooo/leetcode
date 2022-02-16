@@ -195,7 +195,7 @@ public class Demo06_Try_ThrowEgg {
                 //      dp[n][t - 1] + dp[n - 1][t - 1] +1
                 dp[i] = rember + offet + 1;
 
-                // 在下一次赋值之前 offet 代表 dp[i-1]
+                // 在下一次赋值之前 offet 代表平行时空中的 dp [i] 也就是 dp[n - 1][t - 1]
                 offet = rember;
 
                 if (dp[i] >= nLevel) {
