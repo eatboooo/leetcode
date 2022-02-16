@@ -71,9 +71,41 @@ public class Demo06_Try_ThrowEgg {
 
 //        for (int index = l; index >= 1; index--) {
 
-            for (int num = 2; num < n + 1; num++) {
+        for (int num = 2; num < n + 1; num++) {
 
-                for (int index = 1; index < l + 1; index++) {
+            for (int index = 1; index < l + 1; index++) {
+                int ans = Integer.MAX_VALUE;
+                // +1 可还行 ⚠️
+                for (int i = 1; i < index + 1; i++) {
+                    // 这个蛋包揽了 i ～ l 层
+                    // ans = 在这个蛋包揽了 i ～ l 层之后，要扔多少次
+                    // 碎了
+                    int bad = dp[num - 1][i - 1];
+                    // 没碎
+                    int good = dp[num][index - i];
+                    ans = Math.min(ans, Math.max(bad, good));
+                }
+                // +1 可还行 ⚠️
+                dp[num][index] = ans + 1;
+            }
+        }
+        return dp[n][l];
+    }
+
+    // dp 填格子的顺序发生变化，方便后续改成四边形优化版本
+    public static int superEggDrop3(int n, int l) {
+        if (n < 1 || l < 1) {
+            return 0;
+        }
+        int[][] dp = new int[n + 1][l + 1];
+        for (int i = 0; i < l + 1; i++) {
+            dp[1][i] = i;
+        }
+
+//        for (int index = l; index >= 1; index--) {
+
+        for (int index = 1; index < l + 1; index++) {
+            for (int num = n; num >= 2; num--) {
                 int ans = Integer.MAX_VALUE;
                 // +1 可还行 ⚠️
                 for (int i = 1; i < index + 1; i++) {
@@ -93,38 +125,43 @@ public class Demo06_Try_ThrowEgg {
     }
 
     // 四边形
-    public static int superEggDrop3(int n, int l) {
+    public static int superEggDrop3_1(int n, int l) {
         if (n < 1 || l < 1) {
             return 0;
         }
         int[][] dp = new int[n + 1][l + 1];
         int[][] dpIndex = new int[n + 1][l + 1];
+
+        // ⚠️ 两个循环把能填的都填了
         for (int i = 0; i < l + 1; i++) {
             dp[1][i] = i;
             dpIndex[1][i] = 1;
         }
         for (int i = 0; i < n + 1; i++) {
             dpIndex[i][1] = 1;
+            dp[i][1] = 1;
         }
 
-        for (int num = n; num >= 2; num--) {
-            // ⚠️ 从 2 开始
-            for (int index = 2; index < l + 1; index++) {
+        for (int index = 2; index < l + 1; index++) {
+            for (int num = n; num >= 2; num--) {
                 int ans = Integer.MAX_VALUE;
-                int chose = 1;
+                int chose = 0;
                 // +1 可还行 ⚠️
-//                int down = 1;
+                // int down = 1;
+                // int up = index + 1;
                 int down = dpIndex[num][index - 1];
-//                int up = index + 1;
-                int up = num == n ? index : dpIndex[num + 1][index];
-                for (int i = down; i <= up; i++) {
+                // ❕❕❕❕❕边界❕❕❕❕❕❕
+                int up = (num == n ? index + 1 : dpIndex[num + 1][index] + 1);
+                for (int i = down; i < up; i++) {
                     // 这个蛋包揽了 i ～ l 层
                     // ans = 在这个蛋包揽了 i ～ l 层之后，要扔多少次
                     // 碎了
                     int bad = dp[num - 1][i - 1];
                     // 没碎
                     int good = dp[num][index - i];
-                    if (ans > Math.max(bad, good)) {
+                    // ❓❓❓❓❓❓ 第一遍这个忘记注释了，排查了很久❓❓❓❓
+                    // ans = Math.min(ans, Math.max(bad, good));
+                    if (ans >= Math.max(bad, good)) {
                         ans = Math.max(bad, good);
                         chose = i;
                     }
@@ -137,8 +174,65 @@ public class Demo06_Try_ThrowEgg {
         return dp[n][l];
     }
 
+    // 换个思路，固定 n 个瓶子，仍 t 次，至少能确定多少层楼
+    // dp[n][t] = 可以确定的楼层
+    // 根据已有方法画图分析得到：dp[n][t] = dp[n][t - 1] + dp[n - 1][t - 1] +1
+    // 配合数组压缩，一个一纬表可以搞定
+    public static int superEggDrop4(int kChess, int nLevel) {
+        if (nLevel < 1 || kChess < 1) {
+            return 0;
+        }
+        int[] dp = new int[kChess + 1];
+        int ans = 0;
+        while (true) {
+            // 扔的次数
+            ans++;
+            int offet = 0;
+            for (int i = 1; i < dp.length; i++) {
+                // rember 代表平行时空中的 dp [i] 也就是 dp[n][t - 1]
+                int rember = dp[i];
+
+                //      dp[n][t - 1] + dp[n - 1][t - 1] +1
+                dp[i] = rember + offet + 1;
+
+                // 在下一次赋值之前 offet 代表 dp[i-1]
+                offet = rember;
+
+                if (dp[i] >= nLevel) {
+                    return ans;
+                }
+            }
+        }
+
+    }
+
+    public static int superEggDrop44(int kChess, int nLevel) {
+        if (nLevel < 1 || kChess < 1) {
+            return 0;
+        }
+        int[] dp = new int[kChess];
+        int res = 0;
+        while (true) {
+            res++;
+            int previous = 0;
+            for (int i = 0; i < dp.length; i++) {
+                int tmp = dp[i];
+                dp[i] = dp[i] + previous + 1;
+                previous = tmp;
+                if (dp[i] >= nLevel) {
+                    return res;
+                }
+            }
+        }
+    }
+
     public static void main(String[] args) {
-        int i = superEggDrop3(2, 105);
-        System.out.println("i = " + i);
+        System.out.println(superEggDrop4(2, 100));
+        System.out.println(superEggDrop44(2, 100));
+       /* for (int j = 1; j < 100; j++) {
+            int i = superEggDrop3(3, j);
+            System.out.print("楼层 = " + j + " - ");
+            System.out.println("仍的次数= " + i);
+        }*/
     }
 }
