@@ -13,6 +13,7 @@ package cn.eatboooo.study.week10;
  * 如果i-1或i+1超出了数组的边界，那么就当它是一个数字为1的气球
  * 求所能获得硬币的最大数量
  */
+// Leetcode题目：https://leetcode.com/problems/burst-balloons/
 public class Demo03_Try_Balloons {
     public static int maxCoins(int[] arr) {
         if (arr == null || arr.length == 0) {
