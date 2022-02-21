@@ -40,8 +40,12 @@ public class Demo05_KMP_Base {
     }
 
     public static int[] getNextArr(char[] str) {
+        if (str.length == 1) {
+            return new int[]{-1};
+        }
         // 存的是下标
         int[] nextArr = new int[str.length];
+        nextArr[1] = -1;
         // 0位置一定是-1，1位置一定是0，所以直接从2位置开始
         int index = 2;
         // 和 index 比较的位置
@@ -60,5 +64,21 @@ public class Demo05_KMP_Base {
             }
         }
         return nextArr;
+    }
+
+    public static void main(String[] args) {
+        String a;
+        int[] nextArr;
+        /*a = "ababcba";
+        nextArr = getNextArr(a.toCharArray());
+        for (int i = 0; i < nextArr.length; i++) {
+            System.out.print(nextArr[i] + " ");
+        }*/
+        System.out.println();
+        a = "abababab";
+        nextArr = getNextArr(a.toCharArray());
+        for (int i = 0; i < nextArr.length; i++) {
+            System.out.print(nextArr[i] + " ");
+        }
     }
 }
