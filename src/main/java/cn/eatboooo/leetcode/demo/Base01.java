@@ -69,4 +69,16 @@ public class Base01 {
         }
         System.out.println();
     }
+
+    public static void printDoubleCharArr(char[][] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            char[] ints = arr[i];
+            for (int j = 0; j < ints.length; j++) {
+                char anInt = ints[j];
+                System.out.print(anInt + " ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
 }

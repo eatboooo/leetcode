@@ -16,6 +16,7 @@ import java.util.Stack;
 // 测试链接：https://leetcode.com/problems/maximal-rectangle/
 public class Demo03_Monotonous_Arr2MaximalRectangle {
     public static int maximalRectangle(char[][] map) {
+        Base01.printDoubleCharArr(map);
         // 数组压缩
         int height = map.length;
         int weight = map[0].length;

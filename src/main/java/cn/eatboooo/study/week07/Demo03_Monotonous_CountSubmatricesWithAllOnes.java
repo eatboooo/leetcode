@@ -1,5 +1,7 @@
 package cn.eatboooo.study.week07;
 
+import cn.eatboooo.leetcode.demo.Base01;
+
 import java.util.Stack;
 
 /**
@@ -15,6 +17,7 @@ public class Demo03_Monotonous_CountSubmatricesWithAllOnes {
     // 测试链接：https://leetcode.com/problems/count-submatrices-with-all-ones
     // 思路：数组压缩+单调栈，以弹出为最低高度的矩形数量
     public static int numSubmat(int[][] mat) {
+        Base01.printDoubleArr(mat);
         // 数组压缩
         int[][] arr = new int[mat.length][mat[0].length];
         for (int i = 0; i < arr[0].length; i++) {
@@ -27,6 +30,7 @@ public class Demo03_Monotonous_CountSubmatricesWithAllOnes {
         }
         // 数组压缩完成
 
+        Base01.printDoubleArr(arr);
         // 单调栈
         Stack<Integer> stack = new Stack<>();
         // 矩形数量
