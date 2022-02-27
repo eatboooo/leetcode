@@ -5,7 +5,7 @@ package cn.eatboooo.study.week01;
  * @version 1.0
  * @date 2021/7/6 23:48
  */
-public class Demo02_heap {
+public class Demo03_Heap_Base {
     // 大根堆
     public static class maxHeap {
         int size;
