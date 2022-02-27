@@ -9,7 +9,7 @@ import java.util.PriorityQueue;
  * @author weiZhiLin
  * @version 1.0
  * @date 2022/2/27 13:13
- *
+ * <p>
  * 给定很多线段，每个线段都有两个数[start, end]，
  * 表示线段开始位置和结束位置，左右都是闭区间
  * 规定：
@@ -49,6 +49,7 @@ public class Demo03_Heap_CoverMax {
         }
         return ans;
     }
+
     public static class Line {
         public int start;
         public int end;
