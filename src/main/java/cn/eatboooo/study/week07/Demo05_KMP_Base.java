@@ -45,7 +45,7 @@ public class Demo05_KMP_Base {
         }
         // 存的是下标
         int[] nextArr = new int[str.length];
-        nextArr[1] = -1;
+        nextArr[0] = -1;
         // 0位置一定是-1，1位置一定是0，所以直接从2位置开始
         int index = 2;
         // 和 index 比较的位置
@@ -76,6 +76,7 @@ public class Demo05_KMP_Base {
         }*/
         System.out.println();
         a = "abababab";
+        a = "ababadac";
         nextArr = getNextArr(a.toCharArray());
         for (int i = 0; i < nextArr.length; i++) {
             System.out.print(nextArr[i] + " ");

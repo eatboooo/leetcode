@@ -35,12 +35,9 @@ public class Demo07_Graph_TopologicalOrderDFS2 {
             f(city, map);
         }
 
-        ArrayList<CityDeep> arr = new ArrayList<>();
-        for (CityDeep value : map.values()) {
-            arr.add(value);
-        }
+        ArrayList<CityDeep> arr = new ArrayList<>(map.values());
         // deep 深的在前
-        arr.sort((o1, o2) -> o2.deep == o1.deep ? 0 : (o2.deep > o1.deep ? 1 : -1));
+        arr.sort((o1, o2) -> Long.compare(o2.deep, o1.deep));
 
         ArrayList<DirectedGraphNode> ans = new ArrayList<>();
         for (CityDeep cityDeep : arr) {
