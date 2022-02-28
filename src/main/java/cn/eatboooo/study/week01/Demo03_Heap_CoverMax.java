@@ -1,6 +1,7 @@
 package cn.eatboooo.study.week01;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.PriorityQueue;
 
 /**
@@ -36,7 +37,7 @@ public class Demo03_Heap_CoverMax {
             Line e = new Line(line[0], line[1]);
             list.add(e);
         }
-        list.sort((o1, o2) -> o1.start - o2.start);
+        list.sort(Comparator.comparingInt(o -> o.start));
 
         PriorityQueue<Integer> pr = new PriorityQueue<>();
         int ans = 0;
