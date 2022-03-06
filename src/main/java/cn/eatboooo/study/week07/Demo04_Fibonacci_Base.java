@@ -226,20 +226,31 @@ public class Demo04_Fibonacci_Base {
     }
 
     public static void main(String[] args) {
-        int n = 19;
+        int n = 9;
+        // int n = 10000000;
+        long start;
+        long end;
+        start = System.currentTimeMillis();
         System.out.println(f1(n));
+        end = System.currentTimeMillis();
+        System.out.println("矩阵乘法的耗时为 ：" + (end - start));
+
+        start = System.currentTimeMillis();
         System.out.println(f2(n));
-        System.out.println(f3(n));
+        end = System.currentTimeMillis();
+        // System.out.println(f3(n));
+        System.out.println("动态规划+数组压缩的耗时为 ：" + (end - start));
+
         System.out.println("===");
 
-        System.out.println(s1(n));
-        System.out.println(s2(n));
-        System.out.println(s3(n));
+        // System.out.println(s1(n));
+        // System.out.println(s2(n));
+        // System.out.println(s3(n));
         System.out.println("===");
 
-        System.out.println(c1(n));
-        System.out.println(c2(n));
-        System.out.println(c3(n));
+        // System.out.println(c1(n));
+        // System.out.println(c2(n));
+        // System.out.println(c3(n));
         System.out.println("===");
 
     }
