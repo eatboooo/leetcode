@@ -44,16 +44,27 @@ public class Demo07_Try_Goods {
             return 0;
         }
         int[][] dp = new int[bag + 1][w.length + 1];
-        for (int i = w.length-1; i >= 0; i--) {
-            for (int j = 0; j <= bag; j++) {
+        for (int index = w.length-1; index >= 0; index--) {
+            for (int b = 0; b <= bag; b++) {
                 int p2 = 0;
-                if (j - w[i] >= 0) {
-                    p2 = dp[j - w[i]][i + 1] + v[i];
+                if (b - w[index] >= 0) {
+                    p2 = dp[b - w[index]][index + 1] + v[index];
                 }
-                dp[j][i] = Math.max(p2, dp[j][i + 1]);
+                dp[b][index] = Math.max(p2, dp[b][index + 1]);
             }
         }
+        print(dp);
         return dp[bag][0];
+    }
+
+    private static void print(int[][] dp) {
+
+        for (int i = 0; i < dp[0].length; i++) {
+            for (int j = 0; j < dp.length; j++) {
+                System.out.print(dp[j][i] + "\t");
+            }
+            System.out.println();
+        }
     }
 
     public static int dp(int[] w, int[] v, int bag) {
@@ -78,10 +89,12 @@ public class Demo07_Try_Goods {
 
     // test
     public static void main(String[] args) {
-        int[] weights = {3, 2, 4, 7, 3, 1, 7};
-        int[] values = {5, 6, 3, 19, 12, 4, 2};
-        int bag = 15;
-        System.out.println(maxValue(weights, values, bag));
+        int[] weights = {10,1,2,3,2,5,3};
+        // int[] weights = {3, 2, 4, 7, 3, 1, 7};
+        // int[] values = {5, 6, 3, 19, 12, 4, 2};
+        int[] values = {10,4,5,5,6,1,3};
+        int bag = 7;
+        // System.out.println(maxValue(weights, values, bag));
         System.out.println(dp1(weights, values, bag));
     }
 }
