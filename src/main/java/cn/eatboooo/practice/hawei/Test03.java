@@ -21,7 +21,7 @@ public class Test03 {
             // 第一遍用来初始化
             for (String s : ylSplit) {
                 String[] curYl = s.split("-");
-                service.add(curYl[0]);
+                service.add(curYl[0])  ;
                 service.add(curYl[1]);
             }
             // 第二遍用来建立依赖关系
