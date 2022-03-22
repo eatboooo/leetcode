@@ -101,6 +101,9 @@ public class Demo02_SegmentTree_Base {
             sum(rt);
         }
 
+        // L、R 表示任务
+        // l、r 表示当前来到了哪里
+        // rt 表示 l～r 的根节点
         public int query(int L, int R, int l, int r, int rt) {
             if (L <= l && r <= R) {
                 return sum[rt];

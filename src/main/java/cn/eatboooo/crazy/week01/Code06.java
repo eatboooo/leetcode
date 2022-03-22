@@ -15,4 +15,9 @@ package cn.eatboooo.crazy.week01;
  * 贪心：从最左正数范围开始，放完 AOE 再找最左正数...
  */
 public class Code06 {
+    // 贪心策略：永远让最左边缘以最优的方式(AOE尽可能往右扩，最让最左边缘盖住目前怪的最左)变成0，也就是选择：
+    // 一定能覆盖到最左边缘, 但是尽量靠右的中心点
+    // 等到最左边缘变成0之后，再去找下一个最左边缘...
+    public static int minAoe2(int[] x, int[] hp, int range) {
+    }
 }
