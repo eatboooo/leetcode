@@ -21,7 +21,7 @@ package cn.eatboooo.study.week08;
 public class Demo02_SegmentTree_Base {
     public static class SegmentTree {
         // lazy[] 需要 增加/减少 的值
-        // sum[] 总和, O ever young
+        // sum[] 总和, O never young
         // needUpdate[] 是否需要更新
         // update[] 更新的值
         // arr[] 原始数组
