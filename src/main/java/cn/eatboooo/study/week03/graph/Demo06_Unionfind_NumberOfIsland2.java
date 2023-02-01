@@ -24,6 +24,7 @@ public class Demo06_Unionfind_NumberOfIsland2 {
         return ans;
     }
 
+    // 数组版本
     public static class UnionFind {
         // 父亲是谁
         int[] parent;
