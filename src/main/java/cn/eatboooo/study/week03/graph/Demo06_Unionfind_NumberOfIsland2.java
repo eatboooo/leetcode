@@ -28,7 +28,7 @@ public class Demo06_Unionfind_NumberOfIsland2 {
         // 父亲是谁
         int[] parent;
 
-        // 没坨内部数量
+        // 每坨内部数量
         int[] size;
 
         int[] help;
