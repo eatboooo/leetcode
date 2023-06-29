@@ -3,6 +3,9 @@ package cn.eatboooo.leetcode.demo;
 import cn.eatboooo.bean.ListNode;
 import org.junit.Test;
 
+import java.util.HashSet;
+import java.util.LinkedList;
+
 /**
  * leetcode
  * https://leetcode.cn/problemset/all/?listId=2cktkvj&page=1
@@ -44,5 +47,46 @@ public class Leetcode_Hot {
     public void test_01() {
         ListNode listNode = addTwoNumbers(new ListNode(9, 9, 9, 9, 9, 9, 9), new ListNode(9, 9, 9, 9));
         System.out.println("listNode = " + listNode);
+    }
+
+    // 3. 无重复字符的最长子串
+    // 滑动时间窗口的简单思路
+    public int lengthOfLongestSubstring(String s) {
+        char[] arr = s.toCharArray();
+        if (arr.length == 1) {
+            return 1;
+        }
+        windowTo3 win = new windowTo3();
+        int max = 0;
+        for (int i = 0; i < arr.length; i++) {
+            max = Math.max(max, win.put(arr[i]));
+        }
+        max = Math.max(max, win.getSize());
+        return max;
+    }
+
+    // 滑动时间窗口，特供版
+    public class windowTo3 {
+        HashSet<Character> set = new HashSet();
+        LinkedList<Character> list = new LinkedList();
+
+        int getSize() {
+            return list.size();
+        }
+
+        int put(char a) {
+            int beforeSize = list.size();
+            while (set.contains(a)) {
+                Character character = list.removeFirst();
+                set.remove(character);
+            }
+            set.add(a);
+            list.add(a);
+            return beforeSize;
+        }
+    }
+    @Test
+    public void test02_3(){
+        System.out.println(lengthOfLongestSubstring("au"));
     }
 }
