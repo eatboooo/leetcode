@@ -85,8 +85,39 @@ public class Leetcode_Hot {
             return beforeSize;
         }
     }
+
     @Test
-    public void test02_3(){
+    public void test02_3() {
         System.out.println(lengthOfLongestSubstring("au"));
     }
+
+    // 4, 寻找两个正序数组的中位数
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int a = 0;
+        int b = 0;
+        int index = 0;
+        int[] arr = new int[nums1.length + nums2.length];
+        int mid = (nums1.length + nums2.length) >> 1;
+        boolean need2 = (nums1.length + nums2.length) % 2 == 0;
+        for (int i = a; i < nums1.length; i++, a++, index++) {
+            for (int j = b; j < nums2.length && nums1[a] > nums2[b]; j++, b++, index++) {
+                if (nums1[a] <= nums2[b]) {
+                    break;
+                }
+                arr[index] = nums2[b];
+            }
+            arr[index] = nums1[a];
+        }
+        for (int j = b; j < nums2.length; j++, b++, index++) {
+            arr[index] = nums2[b];
+        }
+        return need2 ? (double) (arr[mid] + arr[mid - 1]) / 2 : arr[mid];
+    }
+
+    @Test
+    public void test04() {
+        System.out.println(findMedianSortedArrays(new int[]{1, 3}, new int[]{2, 7}));
+        System.out.println(findMedianSortedArrays(new int[]{2, 3}, new int[]{1}));
+    }
+
 }
