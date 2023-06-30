@@ -92,6 +92,7 @@ public class Leetcode_Hot {
     }
 
     // 4, 寻找两个正序数组的中位数
+    // 整几个指针完事了，挺简单
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
         int a = 0;
         int b = 0;
