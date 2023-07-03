@@ -121,4 +121,41 @@ public class Leetcode_Hot {
         System.out.println(findMedianSortedArrays(new int[]{2, 3}, new int[]{1}));
     }
 
+    // 5. 最长回文子串
+    public String longestPalindrome(String s) {
+        if (s.length() == 0 || s.length() == 1 ) {
+            return s;
+        }
+        char[] charArray = s.toCharArray();
+        StringBuilder sCP = new StringBuilder();
+        for (char c : charArray) {
+            sCP.append(c).append("-");
+        }
+        charArray = sCP.toString().toCharArray();
+        int max = 0;
+        String reslut = "";
+        for (int mid = 1; mid < charArray.length - 1; mid++) {
+            int length = 1;
+            StringBuilder temp = new StringBuilder(String.valueOf(charArray[mid]));
+            for (int left = mid - 1, right = mid + 1; left >= 0 && right < charArray.length && charArray[left] == charArray[right]; left--, right++) {
+                length = right - left + 1;
+                temp = new StringBuilder(charArray[left] + temp.toString() + charArray[right]);
+            }
+            if (length > max) {
+                max = length;
+                reslut = temp.toString();
+            }
+        }
+        return reslut.replace("-", "");
+    }
+
+    @Test
+    public void test05() {
+        System.out.println(longestPalindrome("a"));
+        System.out.println(longestPalindrome("ab"));
+        System.out.println(longestPalindrome("aa"));
+        System.out.println(longestPalindrome("abcc"));
+        System.out.println(longestPalindrome("abccbaaaaaaaa"));
+    }
+
 }
