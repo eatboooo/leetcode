@@ -123,7 +123,7 @@ public class Leetcode_Hot {
 
     // 5. 最长回文子串
     public String longestPalindrome(String s) {
-        if (s.length() == 0 || s.length() == 1 ) {
+        if (s.length() == 0 || s.length() == 1) {
             return s;
         }
         char[] charArray = s.toCharArray();
@@ -156,6 +156,57 @@ public class Leetcode_Hot {
         System.out.println(longestPalindrome("aa"));
         System.out.println(longestPalindrome("abcc"));
         System.out.println(longestPalindrome("abccbaaaaaaaa"));
+    }
+
+    // 10. 正则表达式匹配
+    // 大刷 12题
+    // TODO：DP 版本、记忆版本
+    public boolean isMatch(String s, String p) {
+        if (s.equals(p)) {
+            return true;
+        }
+        return isMatch(0, 0, s.toCharArray(), p.toCharArray());
+    }
+
+    public boolean isMatch(int sIndex, int pIndex, char[] sArr, char[] pArr) {
+        if (pIndex >= pArr.length) {
+            // 字符串匹配结束
+            // 同时正则也结束
+            return sIndex == sArr.length;
+        }
+        // ⚠️这里不能提前判断，因为 s 遍历完成后，可能pArr只剩下了 * ，也是可以忽略的
+/*        if (sIndex == sArr.length) {
+            return false;
+        }*/
+        // 下一个不是 *
+        if (pIndex + 1 == pArr.length || pArr[pIndex + 1] != '*') {
+            return (sIndex != sArr.length && (sArr[sIndex] == pArr[pIndex] || pArr[pIndex] == '.')) && isMatch(sIndex + 1, pIndex + 1, sArr, pArr);
+        }
+
+        // 下一个是 *
+        // 错误版 ⚠️       while (pArr[pIndex + 1] == '*' && sIndex < sArr.length) {
+        // 原因： 首先，下一个不是*的情况已经被过滤，所以，下一个必定是*。其次，即便下一个是*，也需要判断 pArr[pIndex]能否变身
+        while (sIndex < sArr.length && (pArr[pIndex] == sArr[sIndex] || pArr[pIndex] == '.')) {
+            if (isMatch(sIndex, pIndex + 2, sArr, pArr)) {
+                return true;
+            }
+            sIndex++;
+        }
+        // ⚠️，有可能下一个是*，但是不相等，只能变成0个
+        // 还有可能上述的 while 结束了还没返回，此时就是：pArr 已经变身为可以变身的最长字符了
+        return isMatch(sIndex, pIndex + 2, sArr, pArr);
+    }
+
+    @Test
+    public void test06() {
+        System.out.println(isMatch("a", "ab*"));
+        System.out.println(isMatch("mississippi", "mis*is*ip*."));
+        System.out.println(isMatch("abccc", ".*"));
+        System.out.println(isMatch("abccc", ".*a"));
+        System.out.println(isMatch("abccc", ".*c"));
+        System.out.println(isMatch("abccc", ".*bccc"));
+        System.out.println(isMatch("abccc", ".*b*cc"));
+        System.out.println(isMatch("abccc", ".*ccc"));
     }
 
 }
