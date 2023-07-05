@@ -209,4 +209,29 @@ public class Leetcode_Hot {
         System.out.println(isMatch("abccc", ".*ccc"));
     }
 
+    // 11. 盛最多水的容器 - 根据数据量猜测解法
+    // 大刷8
+    // n == height.length
+    //  2 <= n <= 105
+    // 至少是 O（log n） 自然想到双指针
+    // TODO 单调栈版本
+
+    // 思想先进
+    // 左右各一个指针，计算面积后，向中间移动值比较小的指针
+    public int maxArea(int[] height) {
+        int l = 0;
+        int r = height.length - 1;
+        int max = 0;
+        while (l < r) {
+            max = Math.max(Math.min(height[l], height[r]) * (r - l), max);
+            if (height[l] > height[r]) {
+                r--;
+            } else {
+                l++;
+            }
+        }
+        return max;
+    }
+
+
 }
