@@ -3,8 +3,11 @@ package cn.eatboooo.leetcode.demo;
 import cn.eatboooo.bean.ListNode;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * leetcode
@@ -231,6 +234,54 @@ public class Leetcode_Hot {
             }
         }
         return max;
+    }
+
+    // 15. 三数之和 - 大刷 25 - 两数之和加强版
+    // 两数之和加强版？ 目标 k，把数组排好序
+    // l，r 两个指针，
+    // 相加等于 k 存放，l++ r --
+    // 相加小于 k l++
+    // 相加大于 k r --
+    // 直到 l 与 r 相遇
+    // 三数之和，即为：遍历数组，除去当前遍历位置的数，两数之和有没有等于它的相反数的
+    public List<List<Integer>> threeSum(int[] nums) {
+        Arrays.sort(nums);
+        LinkedList<List<Integer>> result = new LinkedList<>();
+        for (int i = nums.length - 1; i > 0; i--) {
+            int num = nums[i];
+            if (i == nums.length - 1 || num != nums[i + 1]) {
+                List<List<Integer>> lists = twoSum(nums, i - 1, -num);
+                for (List<Integer> list : lists) {
+                    list.add(num);
+                }
+                result.addAll(lists);
+            }
+        }
+        return result;
+    }
+
+    // 0 ~ r 找出两个数相加等于 k 的
+    public List<List<Integer>> twoSum(int[] nums, int r, int k) {
+        List<List<Integer>> result = new LinkedList<>();
+        int l = 0;
+        while (l < r) {
+            int sum = nums[l] + nums[r];
+            if (sum < k) {
+                l++;
+                continue;
+            } else if (sum > k) {
+                r--;
+                continue;
+            } else if (l == 0 || nums[l] != nums[l - 1]) {
+                List<Integer> temp = new ArrayList<>();
+                temp.add(nums[l]);
+                temp.add(nums[r]);
+                result.add(temp);
+            }
+            l++;
+            r--;
+        }
+        return result;
     }
 
 
