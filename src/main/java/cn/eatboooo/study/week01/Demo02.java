@@ -98,7 +98,7 @@ public class Demo02 {
         if (arr == null || arr.length < 2) {
             return;
         }
-        quickSortProcess(arr,0,arr.length-1);
+        quickSortProcess(arr, 0, arr.length - 1);
     }
 
     // 块排 3.0 具体实现
@@ -108,11 +108,11 @@ public class Demo02 {
             return;
         }
 //        swap(arr, L + (int) (Math.random() * (R - L + 1)), R);
-        swap(arr, (int) (Math.random()*(r-l+1)) + l,r);
+        swap(arr, (int) (Math.random() * (r - l + 1)) + l, r);
         // 使用荷兰国旗问题，帮助确定中间数的位置（确定下标为ints[0]~int[1]的位置）
         int[] ints = netherlandsFlag(arr, l, r);
-        quickSortProcess(arr,l,ints[0]-1);
-        quickSortProcess(arr,ints[1]+1,r);
+        quickSortProcess(arr, l, ints[0] - 1);
+        quickSortProcess(arr, ints[1] + 1, r);
     }
 
     // 堆结构 - 逻辑上是完全二叉树结构
@@ -209,7 +209,7 @@ public class Demo02 {
 
     // for test
     public static void main(String[] args) {
-         testMerge();
+        testMerge();
 //        testCompare();
     }
 
@@ -240,7 +240,7 @@ public class Demo02 {
         for (int i = 0; i < testTime; i++) {
             int[] arr1 = generateRandomArray(maxSize, maxValue);
             int[] arr2 = copyArray(arr1);
-            quickSort(arr1);
+            fast(arr1);
 //            mergeSort1(arr1);
             Arrays.sort(arr2);
 //            mergeSort2(arr2);
@@ -252,6 +252,39 @@ public class Demo02 {
             }
         }
         System.out.println("测试结束");
+    }
+
+    private static void fast(int[] arr) {
+        doFast(0, arr.length - 1, arr);
+    }
+
+    private static void doFast(int l, int r, int[] arr) {
+        if (l >= r) {
+            return;
+        }
+        int[] netherlands = netherlands(l, r, arr, arr[r]);
+        doFast(l, netherlands[0], arr);
+        doFast(netherlands[1], r, arr);
+    }
+
+    private static int[] netherlands(int l, int r, int[] arr, int value) {
+        if (l == r) {
+            return new int[]{l, r};
+        }
+        int less = l - 1;
+        int eq = l;
+        int more = r;
+        while (eq < more) {
+            if (arr[eq] == value) {
+                eq++;
+            } else if (arr[eq] > value) {
+                swap(arr, eq, --more);
+            } else {
+                swap(arr, eq ++, ++less);
+            }
+        }
+        swap(arr, more, r);
+        return new int[]{less, more + 1};
     }
 
 }
