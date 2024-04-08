@@ -284,5 +284,34 @@ public class Leetcode_Hot {
         return result;
     }
 
+    // 80. 删除有序数组中的重复项 II
+    // https://leetcode.cn/problems/remove-duplicates-from-sorted-array-ii/?envType=study-plan-v2&envId=top-interview-150
+    public int removeDuplicates(int[] nums) {
+        int size = nums.length;
+        int l = 2;
+        int minL = 0;
+        while (l <= size - 1) {
+            if (nums[minL] == nums[l]) {
+                delete(nums, l);
+                size--;
+            }else {
+                minL++;
+                l++;
+            }
+        }
+        return size;
+    }
+
+    private static void delete(int[] arr, int l) {
+        for (int i = l; i < arr.length-1; i++) {
+            swap(arr, i, i + 1);
+        }
+    }
+
+    private static void swap(int[] arr, int l, int r) {
+        arr[l] = arr[r] ^ arr[l];
+        arr[r] = arr[r] ^ arr[l];
+        arr[l] = arr[r] ^ arr[l];
+    }
 
 }
