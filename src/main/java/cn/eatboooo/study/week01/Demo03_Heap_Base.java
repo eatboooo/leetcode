@@ -112,7 +112,7 @@ public class Demo03_Heap_Base {
             return;
         }
         // 和左节点比较
-        int left = (head >> 1 | 1);
+        int left = (head << 1 | 1);
         while (left < size) {
             // 从左右孩子中选出最大的
             int la = left + 1 < size && arr[left + 1] > arr[left] ? left + 1 : left;
