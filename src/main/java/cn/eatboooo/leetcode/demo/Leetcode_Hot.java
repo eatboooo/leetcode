@@ -3,11 +3,7 @@ package cn.eatboooo.leetcode.demo;
 import cn.eatboooo.bean.ListNode;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * leetcode
@@ -294,7 +290,7 @@ public class Leetcode_Hot {
             if (nums[minL] == nums[l]) {
                 delete(nums, l);
                 size--;
-            }else {
+            } else {
                 minL++;
                 l++;
             }
@@ -303,7 +299,7 @@ public class Leetcode_Hot {
     }
 
     private static void delete(int[] arr, int l) {
-        for (int i = l; i < arr.length-1; i++) {
+        for (int i = l; i < arr.length - 1; i++) {
             swap(arr, i, i + 1);
         }
     }
@@ -312,6 +308,44 @@ public class Leetcode_Hot {
         arr[l] = arr[r] ^ arr[l];
         arr[r] = arr[r] ^ arr[l];
         arr[l] = arr[r] ^ arr[l];
+    }
+
+    // 189. 轮转数组，不申请额外空间
+    // https://leetcode.cn/problems/rotate-array/submissions/521824465/?envType=study-plan-v2&envId=top-interview-150
+    public void rotate(int[] nums, int k) {
+        k = k % nums.length;
+        for (int i = 0; i < k; i++) {
+            rightGoLeft(nums);
+        }
+    }
+
+    private static void rightGoLeft(int[] arr) {
+        for (int i = arr.length - 1; i > 0; i--) {
+            swap(arr, i, i - 1);
+        }
+    }
+
+    // 189. 轮转数组，不申请额外空间
+    // 搞个新数组，没啥技术含量
+    // 1.先整体反转，再分步反转
+    // 2.分步根据 k 位置，反转两次
+    // reverse(nums, 0, k-1);
+    // reverse(nums, k, nums.length-1);
+    // 高端：翻转数组
+    public void rotate2(int[] nums, int k) {
+        k = nums.length - (k % nums.length);
+        int[] ints = new int[nums.length];
+        int zeroIndex = 0;
+        for (int i = k; i < ints.length; i++) {
+            ints[zeroIndex++] = nums[i];
+        }
+        for (int i = 0; i < k; i++) {
+            ints[zeroIndex++] = nums[i];
+        }
+
+        for (int i = 0; i < ints.length; i++) {
+            nums[i] = ints[i];
+        }
     }
 
 }
