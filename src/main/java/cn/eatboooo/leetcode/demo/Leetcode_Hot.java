@@ -348,4 +348,45 @@ public class Leetcode_Hot {
         }
     }
 
+    // 55. 跳跃游戏
+    // https://leetcode.cn/problems/jump-game/solutions/203549/tiao-yue-you-xi-by-leetcode-solution/?envType=study-plan-v2&envId=top-interview-150
+    // 暴力递归改动态规划，很舒服
+    // todo:后续尝试单调栈，每到达一个格子， 刷新能跳到的最远距离
+    public boolean canJump(int[] nums) {
+        int[] arr = new int[nums.length];
+        arr[arr.length - 1] = 1;
+        int target = nums.length - 1;
+        for (int index = arr.length - 2; index >= 0; index--) {
+            int times = nums[index];
+            if (times >= (target - index)) {
+                arr[index] = 1;
+                continue;
+            }
+            int result = 0;
+            for (int i = 1; i <= times; i++) {
+                result |= arr[index + i];
+            }
+            arr[index] = result;
+        }
+
+        return arr[0] == 1;
+    }
+
+    // 暴力递归，但是超时了
+    private boolean doJump(int[] nums, int index, int target) {
+        if (index >= target) {
+            return true;
+        }
+        int times = nums[index];
+        if (times >= (target - index)) {
+            return true;
+        }
+        boolean result = false;
+
+        for (int i = 1; i <= times; i++) {
+            result |= doJump(nums, index + i, target);
+        }
+        return result;
+    }
+
 }
