@@ -389,4 +389,53 @@ public class Leetcode_Hot {
         return result;
     }
 
+    // 45. 跳跃游戏 II
+    // https://leetcode.cn/problems/jump-game-ii/description/?envType=study-plan-v2&envId=top-interview-150
+    public int jump(int[] nums) {
+        int[] arr = new int[nums.length];
+        int target = nums.length - 1;
+        for (int index = arr.length - 2; index >= 0; index--) {
+            int times = nums[index];
+            if (times >= (target - index)) {
+                arr[index] = 1;
+                continue;
+            }
+            int result = Integer.MAX_VALUE;
+            for (int i = 1; i <= times; i++) {
+                int i1 = arr[index + i];
+                if (i1 == Integer.MAX_VALUE) {
+                    continue;
+                }
+                result = Math.min(i1 + 1, result);
+            }
+            arr[index] = result;
+        }
+        return arr[0];
+    }
+
+    // 暴力递归，但是超时了
+    // very good
+    private int doJump02(int[] nums, int index, int target) {
+        if (index >= target) {
+            return 0;
+        }
+        int times = nums[index];
+        if (times >= (target - index)) {
+            return 1;
+        }
+
+        int result = Integer.MAX_VALUE;
+
+        for (int i = 1; i <= times; i++) {
+            int i1 = doJump02(nums, index + i, target);
+
+            if (i1 == Integer.MAX_VALUE) {
+                continue;
+            }
+            result = Math.min(i1 + 1, result);
+        }
+
+        return result;
+    }
+
 }
